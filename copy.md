@@ -7,7 +7,7 @@
 	highlight Friday and Sunday
 
 
-Traditionally, Christians have observed the crucifixion of Jesus on a Friday, and rising from the dead on a Sunday.
+Traditionally, Christians have observed the crucifixion of Jesus on a Friday and rising from the dead on a Sunday.
 
 This is in conflict with the Biblical account of Jesus being in the grave for three days and three nights.
 

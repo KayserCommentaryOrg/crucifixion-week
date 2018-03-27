@@ -1,14 +1,110 @@
-<div class="container">
-	<div class="day">
+<svg style="height: {{(days.length * dayHeight) + daySquareStrokeWidth}}px;">
+	<g>
+		{{#each days as day, i}}
+			<rect
+				y="{{impliedDayBorder + i * dayHeight}}"
+				x="{{impliedDayBorder}}"
+				width="{{dayWidth}}"
+				height="{{dayHeight}}"
+				class="day-box"
+				stroke-width="{{daySquareStrokeWidth}}"
+			>
+			</rect>
+			<rect
+				y="{{i * dayHeight}}"
+				x="{{impliedDayBorder}}"
+				width="{{dayWidth}}"
+				height="{{dayHeight / 2}}"
+				class="nighttime-box"
+			>
+			</rect>
+			<rect
+				y="{{i * dayHeight + (dayHeight * 0.5)}}"
+				x="{{impliedDayBorder}}"
+				width="{{dayWidth}}"
+				height="{{dayHeight / 2}}"
+				class="daylight-box"
+			>
+			</rect>
+		{{/each}}
+	</g>
+	{{#if showWeekdayLabels}}
+		<g
+			in:fly="{ y: 100 }"
+			out:fly="{ y: -100 }"
+		>
+			{{#each days as day, i}}
+				<text
+					y="{{impliedDayBorder + (i * dayHeight) + (dayHeight * 0.75)}}"
+					x="{{dayWidth + daySquareStrokeWidth + 20}}"
+					text-anchor="start"
+				>
+					{{day.weekday}}
+				</text>
+			{{/each}}
+		</g>
+	{{/if}}
 
-	</div>
+	{{#if showFridaySundayRange}}
+		<g>
 
-</div>
+		</g>
+	{{/if}}
+
+</svg>
 
 <style>
-$dayHeight: 200px;
+$yellow: #FFDC00;
+$gray: #AAAAAA;
+$red: #FF4136;
+$navy: #001F3F;
 
-.container {
-	display: flex;
+.day-box {
+	stroke: $navy;
+	fill: transparent;
+}
+
+.daylight-box {
+	fill: $yellow;
+	fill-opacity: 0.5;
+}
+.nighttime-box {
+	fill: $gray;
+	fill-opacity: 0.5;
+}
+
+text {
+	font-size: 16px;
 }
 </style>
+
+<script>
+import combine from 'combine-arrays'
+import { fade, fly } from 'svelte-transitions'
+
+export default {
+	data() {
+		return {
+			days: combine({
+				number: [ 14, 15, 16, 17 ],
+				weekday: [ 'Thursday', 'Friday', 'Saturday', 'Sunday' ]
+			}),
+			dayHeight: 100,
+			dayWidth: 100,
+			daySquareStrokeWidth: 2,
+		}
+	},
+	computed: {
+		impliedDayBorder: daySquareStrokeWidth => daySquareStrokeWidth / 2,
+		highlightedDays: (showFridayHighlight, showSundayHighlight) => [
+				false,
+				showFridayHighlight,
+				false,
+				showSundayHighlight
+			]
+	},
+	transitions: {
+		fly
+	}
+}
+</script>

@@ -7,7 +7,7 @@ import sveltePreprocessPostcss from 'svelte-preprocess-postcss'
 export default {
 	input: `./index.js`,
 	output: {
-		name: 'app',
+		name: `app`,
 		file: `./public/bundle.js`,
 		format: `iife`,
 		sourcemap: true,

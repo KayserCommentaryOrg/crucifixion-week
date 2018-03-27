@@ -7,6 +7,7 @@
 	highlight Friday and Sunday
 
 
+
 Traditionally, Christians have observed the crucifixion of Jesus on a Friday and rising from the dead on a Sunday.
 
 This is in conflict with the Biblical account of Jesus being in the grave for three days and three nights.
@@ -17,9 +18,6 @@ This page lays out the timeline of the crucifixion and resurrection as described
 
 ## Note about the timeline
 
-	Hide weekday labels
-	Show Hebrew calendar day markers at start of evenings
-
 In this timeline you can see I've highlighted the nighttime and daytime parts of the days.
 
 More than making the timeline of the crucifixion and resurrection easier to read, this will be relevant because the Jews counted the end of the day as happening at sundown.
@@ -27,6 +25,7 @@ More than making the timeline of the crucifixion and resurrection easier to read
 
 # Passover
 
+	Hide weekday labels
 	Show day-of-month labels
 	Show "lamb sacrificed" 75% of way through daylight on the 14th
 	Show "lamb supper eaten" at beginning of night on 15th
@@ -110,7 +109,7 @@ John specifically calls out that the fact that the day of preparation was not ju
 
 ## The Last Supper
 
-This helps make more sense of the last supper being a meatless one - it was not a Passover meal, but meal of bread traditionally eaten on the 13th.
+This helps make more sense of the last supper being a meatless one - it was not a Passover lamb meal, but meal of bread traditionally eaten on the 13th.
 
 Jesus did not sacrifice a lamb to share with the apostles, he was the lamb sacrificed on the afternoon of the 14th, as the Passover had been forecasting for centuries.
 

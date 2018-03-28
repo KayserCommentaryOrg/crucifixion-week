@@ -1,5 +1,5 @@
 <svg
-	style="height: {{(days.length * dayHeight) + daySquareStrokeWidth}}px; width: 500px"
+	style="height: {{((days.length + .5) * dayHeight) + daySquareStrokeWidth}}px; width: 500px"
 >
 	<g>
 		{{#each days as day, i}}
@@ -45,23 +45,25 @@
 	<TransitioningGroup visible={{showFridaySundayRange}}>
 		<rect
 			y="{{ fridaySundayRangeY }}"
-			x="{{ dayLeftX - dayRangeBarWidth }}"
-			width="{{ dayRangeBarWidth }}"
+			x="{{ leftRangeBarX }}"
+			width="{{ rangeBarWidth }}"
 			height="{{ fridaySundayRangeHeight }}"
-			class="green-fill"
+			fill="{{olive}}"
 		>
 		</rect>
-		<polyline
-			fill="none"
-			points="{{fridaySundayRangePointerPoints}}"
-			class="green-stroke pointer-line"
+		<Line
+			stroke={{olive}}
+			leftX={{leftRangeBarX - 20}}
+			leftY={{fridaySundayRangeMidpoint}}
+			rightX={{leftRangeBarX}}
+			rightY={{fridaySundayRangeMidpoint}}
 		/>
 		<text
-			y={{fridaySundayRangePointerLeft.y + 4}}
-			x={{fridaySundayRangePointerLeft.x - 4}}
-			width={{fridaySundayRangePointerLeft.x}}
+			y={{fridaySundayRangeMidpoint + textDistanceFromPointer}}
+			x={{leftRangeBarX - 20 - textDistanceFromPointer}}
+			width={{leftRangeBarX - 20 - textDistanceFromPointer}}
 			text-anchor="end"
-			class="green-fill"
+			fill="{{olive}}"
 		>
 			Jesus's time in tomb (traditional)
 		</text>
@@ -70,15 +72,123 @@
 	<TransitioningGroup visible={{showDayOfMonth}}>
 		{{#each days as day, i}}
 			<text
-				x={{ timelineLeft + (dayWidth / 2) }}
-				width={{ dayWidth }}
-				y={{ getDayY(i + .8) }}
+				x="{{ timelineLeft + (dayWidth / 2) }}"
+				width="{{ dayWidth }}"
+				y="{{ getDayY(i + .8) }}"
 				class="navy-fill"
 				text-anchor="middle"
 			>
 				{{day.number}}
 			</text>
 		{{/each}}
+	</TransitioningGroup>
+
+	<TransitioningGroup visible={{showLambSacrificed}}>
+		<Line
+			rightX={{dayLeftX}}
+			rightY={{lambSacrificedY}}
+			leftX={{dayLeftX - 50}}
+			leftY={{lambSacrificedY - 20}}
+		/>
+		<text
+			y="{{lambSacrificedY - 20 + textDistanceFromPointer}}"
+			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			text-anchor="end"
+		>
+			Lamb sacrificed
+		</text>
+	</TransitioningGroup>
+
+	<TransitioningGroup visible={{showHighSabbath}}>
+		<rect
+			y="{{ highSabbathRangeY }}"
+			x="{{ leftRangeBarX }}"
+			width="{{ rangeBarWidth }}"
+			height="{{ highSabbathRangeHeight }}"
+			fill="{{green}}"
+		>
+		</rect>
+		<Line
+			rightX={{dayLeftX}}
+			rightY={{highSabbathMidpointY}}
+			leftX={{dayLeftX - 50}}
+			leftY={{highSabbathMidpointY}}
+			stroke={{green}}
+		/>
+		<text
+			y="{{highSabbathMidpointY + textDistanceFromPointer}}"
+			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			width="{{dayLeftX - textDistanceFromPointer}}"
+			text-anchor="end"
+		>
+			High Sabbath
+		</text>
+	</TransitioningGroup>
+
+	<TransitioningGroup visible={{showLambSupperEaten}}>
+		<Line
+			rightX={{dayLeftX}}
+			rightY={{lambEatenY}}
+			leftX={{dayLeftX - 50}}
+			leftY={{lambEatenY}}
+		/>
+		<text
+			y={{lambEatenY + textDistanceFromPointer}}
+			x={{dayLeftX - 50 - textDistanceFromPointer}}
+			width={{dayLeftX - textDistanceFromPointer}}
+			text-anchor="end"
+		>
+			Lamb supper eaten
+		</text>
+	</TransitioningGroup>
+
+	<TransitioningGroup visible={{showFeastOfUnleavenedBread}}>
+		<rect
+			y={{ getDayY(3) }}
+			x={{ leftRangeBarX }}
+			width={{ rangeBarWidth }}
+			height={{ dayHeight * 1.2 }}
+			fill="{{olive}}"
+		>
+		</rect>
+		<polygon
+			points="{{leftRangeBarX - 8}},{{getDayY(4.2)}} {{dayLeftX + 8}},{{getDayY(4.2)}} {{leftRangeBarX + (rangeBarWidth / 2)}},{{getDayY(4.2) + rangeBarWidth}}"
+			fill="{{olive}}"
+		/>
+		<Line
+			rightX={{dayLeftX}}
+			rightY={{ getDayY(3.5) }}
+			leftX={{dayLeftX - 50}}
+			leftY={{ getDayY(3.5) }}
+			stroke={{olive}}
+		/>
+		<text
+			y={{ getDayY(3.5) + textDistanceFromPointer }}
+			x={{ dayLeftX - 50 - textDistanceFromPointer }}
+			width={{ dayLeftX - textDistanceFromPointer }}
+			text-anchor="end"
+		>
+			Feast of Unleavened Bread
+		</text>
+	</TransitioningGroup>
+
+
+	<TransitioningGroup visible={{showCrucifixion}}>
+		<Line
+			rightX={{dayLeftX}}
+			rightY={{lambSacrificedY}}
+			leftX={{dayLeftX - 50}}
+			leftY={{lambSacrificedY + 20}}
+		/>
+		<text
+			y="{{lambSacrificedY + 20 + textDistanceFromPointer}}"
+			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			text-anchor="end"
+		>
+			Jesus crucified
+		</text>
 	</TransitioningGroup>
 
 </svg>
@@ -104,40 +214,36 @@
 	fill-opacity: 0.5;
 }
 
-.green-fill {
-	fill: $green;
-}
-.green-stroke {
-	stroke: $green;
-}
-
-.pointer-line {
-	stroke-width: 2;
-}
-
-text {
+:global(text) {
 	font-size: 16px;
 }
 </style>
 
 <script>
 import TransitioningGroup from './TransitioningGroup.html'
+import Line from './Line.html'
 import combine from 'combine-arrays'
-
-const buildPoints = (...arrays) => arrays.map(([ x, y]) => `${x},${y}`).join(' ')
 
 export default {
 	data() {
 		return {
 			days: combine({
 				number: [ 14, 15, 16, 17 ],
-				weekday: [ 'Thursday', 'Friday', 'Saturday', 'Sunday' ]
+				weekday: [ `Thursday`, `Friday`, `Saturday`, `Sunday` ],
 			}),
 			dayHeight: 100,
 			dayWidth: 100,
 			daySquareStrokeWidth: 2,
 			timelineLeft: 300,
-			dayRangeBarWidth: 20,
+			rangeBarWidth: 20,
+			textDistanceFromPointer: 4,
+
+			yellow: `#FFDC00`,
+			gray: `#AAAAAA`,
+			red: `#FF4136`,
+			navy: `#001F3F`,
+			olive: `#3D9970`,
+			green: `#2ECC40`,
 		}
 	},
 	computed: {
@@ -146,32 +252,33 @@ export default {
 			false,
 			showFridayHighlight,
 			false,
-			showSundayHighlight
+			showSundayHighlight,
 		],
 		getDayY: (dayHeight, impliedDayBorder) => dayPosition =>
 			impliedDayBorder + (dayHeight * dayPosition),
 		dayLeftX: (timelineLeft, daySquareStrokeWidth) =>
 			timelineLeft - (daySquareStrokeWidth / 2),
+		leftRangeBarX: (dayLeftX, rangeBarWidth) =>
+			dayLeftX - rangeBarWidth,
 
 
 		fridaySundayRangeY: getDayY => getDayY(1.875),
 		fridaySundayRangeHeight: dayHeight => dayHeight * 1.5,
 		fridaySundayRangeMidpoint: (fridaySundayRangeY, fridaySundayRangeHeight) =>
 			fridaySundayRangeY + (fridaySundayRangeHeight / 2),
-		fridaySundayRangePointerRightX: (dayLeftX, dayRangeBarWidth) =>
-			dayLeftX - dayRangeBarWidth,
-		fridaySundayRangePointerPoints: (fridaySundayRangePointerRightX, fridaySundayRangeMidpoint) =>
-			buildPoints(
-				[fridaySundayRangePointerRightX, fridaySundayRangeMidpoint],
-				[fridaySundayRangePointerRightX - 20, fridaySundayRangeMidpoint],
-			),
-		fridaySundayRangePointerLeft: (fridaySundayRangePointerRightX, fridaySundayRangeMidpoint) => ({
-				x: fridaySundayRangePointerRightX - 20,
-				y: fridaySundayRangeMidpoint,
-			})
+
+		lambSacrificedY: getDayY => getDayY(1.875),
+		lambEatenY: getDayY => getDayY(2.05),
+
+		highSabbathRangeY: getDayY => getDayY(2),
+		highSabbathRangeHeight: (getDayY, highSabbathRangeY) =>
+			getDayY(3) - highSabbathRangeY,
+		highSabbathMidpointY: (highSabbathRangeY, highSabbathRangeHeight) =>
+			highSabbathRangeY + (highSabbathRangeHeight / 2)
 	},
 	components: {
-		TransitioningGroup
-	}
+		TransitioningGroup,
+		Line,
+	},
 }
 </script>

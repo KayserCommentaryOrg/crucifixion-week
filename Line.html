@@ -1,0 +1,34 @@
+<polyline
+	fill="none"
+	stroke-width="2"
+	:points
+	:stroke
+/>
+
+<script>
+const buildPoints = (...arrays) => arrays.map(
+	([ x, y ]) => `${ x },${ y }`
+).join(` `)
+
+export default {
+	namespace: 'svg',
+	data() {
+		return {
+			leftX: null,
+			leftY: null,
+			rightX: null,
+			rightY: null,
+			stroke: `black`,
+		}
+	},
+	computed: {
+		midpointX: (leftX, rightX) => leftX + ((rightX - leftX) / 2),
+		points: (leftX, leftY, rightX, rightY, midpointX) => buildPoints(
+			[ leftX, leftY ],
+			[ midpointX, leftY ],
+			[ midpointX, rightY ],
+			[ rightX, rightY ]
+		),
+	},
+}
+</script>

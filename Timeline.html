@@ -9,6 +9,7 @@
 				width="{{dayWidth}}"
 				height="{{dayHeight}}"
 				class="day-box"
+				stroke="{{navy}}"
 				stroke-width="{{daySquareStrokeWidth}}"
 			>
 			</rect>
@@ -75,7 +76,7 @@
 				x="{{ timelineLeft + (dayWidth / 2) }}"
 				width="{{ dayWidth }}"
 				y="{{ getDayY(i + .8) }}"
-				class="navy-fill"
+				fill="{{navy}}"
 				text-anchor="middle"
 			>
 				{{day.number}}
@@ -88,10 +89,10 @@
 			rightX={{dayLeftX}}
 			rightY={{lambSacrificedY}}
 			leftX={{dayLeftX - 50}}
-			leftY={{lambSacrificedY - 20}}
+			leftY={{lambSacrificedY - 24}}
 		/>
 		<text
-			y="{{lambSacrificedY - 20 + textDistanceFromPointer}}"
+			y="{{lambSacrificedY - 24 + textDistanceFromPointer}}"
 			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			text-anchor="end"
@@ -149,19 +150,19 @@
 			x={{ leftRangeBarX }}
 			width={{ rangeBarWidth }}
 			height={{ dayHeight * 1.2 }}
-			fill="{{olive}}"
+			fill="{{red}}"
 		>
 		</rect>
 		<polygon
 			points="{{leftRangeBarX - 8}},{{getDayY(4.2)}} {{dayLeftX + 8}},{{getDayY(4.2)}} {{leftRangeBarX + (rangeBarWidth / 2)}},{{getDayY(4.2) + rangeBarWidth}}"
-			fill="{{olive}}"
+			fill="{{red}}"
 		/>
 		<Line
 			rightX={{dayLeftX}}
 			rightY={{ getDayY(3.5) }}
 			leftX={{dayLeftX - 50}}
 			leftY={{ getDayY(3.5) }}
-			stroke={{olive}}
+			stroke={{red}}
 		/>
 		<text
 			y={{ getDayY(3.5) + textDistanceFromPointer }}
@@ -179,10 +180,10 @@
 			rightX={{dayLeftX}}
 			rightY={{lambSacrificedY}}
 			leftX={{dayLeftX - 50}}
-			leftY={{lambSacrificedY + 20}}
+			leftY={{lambSacrificedY}}
 		/>
 		<text
-			y="{{lambSacrificedY + 20 + textDistanceFromPointer}}"
+			y="{{lambSacrificedY + textDistanceFromPointer}}"
 			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			text-anchor="end"
@@ -191,18 +192,57 @@
 		</text>
 	</TransitioningGroup>
 
+	<TransitioningGroup visible={{showBuried}}>
+		<Line
+			rightX={{dayLeftX}}
+			rightY={{getDayY(1.95)}}
+			leftX={{dayLeftX - 50}}
+			leftY={{getDayY(1.95) + 20}}
+		/>
+		<text
+			y="{{getDayY(1.95) + 20 + textDistanceFromPointer}}"
+			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			text-anchor="end"
+		>
+			Jesus buried
+		</text>
+	</TransitioningGroup>
+
+	<TransitioningGroup visible={{showWeeklySabbath}}>
+		<rect
+			y="{{ weeklySabbathRangeY }}"
+			x="{{ leftRangeBarX }}"
+			width="{{ rangeBarWidth }}"
+			height="{{ weeklySabbathRangeHeight }}"
+			fill="{{blue}}"
+		>
+		</rect>
+		<Line
+			rightX={{dayLeftX}}
+			rightY={{weeklySabbathMidpointY}}
+			leftX={{dayLeftX - 50}}
+			leftY={{weeklySabbathMidpointY}}
+			stroke={{blue}}
+		/>
+		<text
+			y="{{weeklySabbathMidpointY + textDistanceFromPointer}}"
+			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			width="{{dayLeftX - textDistanceFromPointer}}"
+			text-anchor="end"
+		>
+			Weekly Sabbath
+		</text>
+	</TransitioningGroup>
+
+
 </svg>
 
 <style>
 @import "./variables";
 
 .day-box {
-	stroke: $navy;
 	fill: transparent;
-}
-
-.navy-fill {
-	fill: $navy;
 }
 
 .daylight-box {
@@ -240,10 +280,12 @@ export default {
 
 			yellow: `#FFDC00`,
 			gray: `#AAAAAA`,
-			red: `#FF4136`,
+			red: `#cc412e`,
 			navy: `#001F3F`,
 			olive: `#3D9970`,
 			green: `#2ECC40`,
+			lime: `#01FF70`,
+			blue: `#412ecc`,
 		}
 	},
 	computed: {
@@ -274,7 +316,13 @@ export default {
 		highSabbathRangeHeight: (getDayY, highSabbathRangeY) =>
 			getDayY(3) - highSabbathRangeY,
 		highSabbathMidpointY: (highSabbathRangeY, highSabbathRangeHeight) =>
-			highSabbathRangeY + (highSabbathRangeHeight / 2)
+			highSabbathRangeY + (highSabbathRangeHeight / 2),
+
+		weeklySabbathRangeY: getDayY => getDayY(3),
+		weeklySabbathRangeHeight: (getDayY, weeklySabbathRangeY) =>
+			getDayY(4) - weeklySabbathRangeY,
+		weeklySabbathMidpointY: (weeklySabbathRangeY, weeklySabbathRangeHeight) =>
+			weeklySabbathRangeY + (weeklySabbathRangeHeight / 2),
 	},
 	components: {
 		TransitioningGroup,

@@ -376,7 +376,7 @@ section {
 <script>
 import Timeline from './Timeline.html'
 
-const defaultState = {
+const defaultTimelineState = {
 	showFridaySundayRange: false,
 	showWeekdayLabels: false,
 	showDayOfMonth: false,
@@ -405,7 +405,9 @@ export default {
 		this.updateTimeline()
 	},
 	data() {
-		return defaultState
+		return Object.assign({
+			lastSection: null
+		}, defaultTimelineState)
 	},
 	components: {
 		Timeline
@@ -417,7 +419,7 @@ export default {
 			})
 		},
 		updateTimeline() {
-			const windowHeight = this.get('windowHeight')
+			const { windowHeight, lastSection } = this.get()
 
 			const middleOfScreen = windowHeight / 2
 
@@ -427,15 +429,37 @@ export default {
 				return bottom > 0 && top < middleOfScreen
 			})
 
+			if (visibleAboveMiddleOfScreen.length === 0) {
+				return
+			}
+
 			const lastSectionInTopHalfOfScreen = visibleAboveMiddleOfScreen.pop()
 
-			const trueValues = makeTruthyMap(
-				Object.keys(lastSectionInTopHalfOfScreen.dataset)
-			)
+			if (lastSectionInTopHalfOfScreen === lastSection) {
+				return
+			}
 
-			this.set(Object.assign({}, defaultState, trueValues))
+			const visibleTimelineElements = Object.keys(lastSectionInTopHalfOfScreen.dataset)
 
-			return lastSectionInTopHalfOfScreen
+			const newTrueProperties = makeTruthyMap(visibleTimelineElements)
+
+			const newSetObject = {
+				lastSection: lastSectionInTopHalfOfScreen
+			}
+
+			visibleTimelineElements.forEach(key => {
+				if (this.get(key) !== true) {
+					newSetObject[key] = true
+				}
+			})
+			Object.keys(defaultTimelineState).forEach(key => {
+				if (!newTrueProperties[key] && this.get(key) === true) {
+					newSetObject[key] = defaultTimelineState[key]
+				}
+			})
+
+			console.log('calling set', newSetObject)
+			this.set(newSetObject)
 		},
 		onResize() {
 			this.updateWindow()

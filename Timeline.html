@@ -1,5 +1,5 @@
 <svg
-	style="height: {{((days.length + .5) * dayHeight) + daySquareStrokeWidth}}px; width: 500px"
+	style="height: {{((days.length + .5) * dayHeight) + daySquareStrokeWidth}}px; width: 600px"
 >
 	<g>
 		{{#each days as day, i}}
@@ -35,7 +35,7 @@
 		{{#each days as day, i}}
 			<text
 				y="{{impliedDayBorder + (i * dayHeight) + (dayHeight * 0.75)}}"
-				x="{{timelineLeft + dayWidth + daySquareStrokeWidth + 20}}"
+				x="{{dayRightX + 20}}"
 				text-anchor="start"
 			>
 				{{day.weekday}}
@@ -146,31 +146,39 @@
 
 	<TransitioningGroup visible={{showFeastOfUnleavenedBread}}>
 		<rect
-			y={{ getDayY(3) }}
-			x={{ leftRangeBarX }}
+			y={{ getDayY(1) }}
+			x={{ dayRightX }}
 			width={{ rangeBarWidth }}
-			height={{ dayHeight * 1.2 }}
+			height={{ dayHeight * 3.2 }}
 			fill="{{red}}"
 		>
 		</rect>
 		<polygon
-			points="{{leftRangeBarX - 8}},{{getDayY(4.2)}} {{dayLeftX + 8}},{{getDayY(4.2)}} {{leftRangeBarX + (rangeBarWidth / 2)}},{{getDayY(4.2) + rangeBarWidth}}"
+			points="{{dayRightX - 8}},{{getDayY(4.2)}} {{dayRightX + rangeBarWidth + 8}},{{getDayY(4.2)}} {{dayRightX + (rangeBarWidth / 2)}},{{getDayY(4.2) + rangeBarWidth}}"
 			fill="{{red}}"
 		/>
 		<Line
-			rightX={{dayLeftX}}
-			rightY={{ getDayY(3.5) }}
-			leftX={{dayLeftX - 50}}
-			leftY={{ getDayY(3.5) }}
+			rightX={{dayRightX + 50}}
+			rightY={{ getDayY(2) }}
+			leftX={{dayRightX}}
+			leftY={{ getDayY(2) }}
 			stroke={{red}}
 		/>
 		<text
-			y={{ getDayY(3.5) + textDistanceFromPointer }}
-			x={{ dayLeftX - 50 - textDistanceFromPointer }}
-			width={{ dayLeftX - textDistanceFromPointer }}
-			text-anchor="end"
+			y={{ getDayY(2) - textDistanceFromPointer }}
+			x={{ dayRightX + 50 + textDistanceFromPointer }}
+			width="140"
+			text-anchor="start"
 		>
-			Feast of Unleavened Bread
+			Feast of
+		</text>
+		<text
+			y={{ getDayY(2) + 16 }}
+			x={{ dayRightX + 50 + textDistanceFromPointer }}
+			width="140"
+			text-anchor="start"
+		>
+			Unleavened Bread
 		</text>
 	</TransitioningGroup>
 
@@ -340,8 +348,10 @@ export default {
 		],
 		getDayY: (dayHeight, impliedDayBorder) => dayPosition =>
 			impliedDayBorder + (dayHeight * dayPosition),
-		dayLeftX: (timelineLeft, daySquareStrokeWidth) =>
-			timelineLeft - (daySquareStrokeWidth / 2),
+		dayLeftX: (timelineLeft, impliedDayBorder) =>
+			timelineLeft - impliedDayBorder,
+		dayRightX: (timelineLeft, dayWidth, impliedDayBorder) =>
+			timelineLeft + dayWidth + impliedDayBorder,
 		leftRangeBarX: (dayLeftX, rangeBarWidth) =>
 			dayLeftX - rangeBarWidth,
 

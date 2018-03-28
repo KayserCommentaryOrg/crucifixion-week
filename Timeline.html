@@ -1,9 +1,11 @@
-<svg style="height: {{(days.length * dayHeight) + daySquareStrokeWidth}}px;">
+<svg
+	style="height: {{(days.length * dayHeight) + daySquareStrokeWidth}}px; width: 500px"
+>
 	<g>
 		{{#each days as day, i}}
 			<rect
 				y="{{impliedDayBorder + i * dayHeight}}"
-				x="{{impliedDayBorder}}"
+				x="{{timelineLeft}}"
 				width="{{dayWidth}}"
 				height="{{dayHeight}}"
 				class="day-box"
@@ -12,7 +14,7 @@
 			</rect>
 			<rect
 				y="{{i * dayHeight}}"
-				x="{{impliedDayBorder}}"
+				x="{{timelineLeft}}"
 				width="{{dayWidth}}"
 				height="{{dayHeight / 2}}"
 				class="nighttime-box"
@@ -20,7 +22,7 @@
 			</rect>
 			<rect
 				y="{{i * dayHeight + (dayHeight * 0.5)}}"
-				x="{{impliedDayBorder}}"
+				x="{{timelineLeft}}"
 				width="{{dayWidth}}"
 				height="{{dayHeight / 2}}"
 				class="daylight-box"
@@ -28,40 +30,69 @@
 			</rect>
 		{{/each}}
 	</g>
-	{{#if showWeekdayLabels}}
-		<g
-			in:fly="{ y: 100 }"
-			out:fly="{ y: -100 }"
+	<TransitioningGroup visible={{showWeekdayLabels}}>
+		{{#each days as day, i}}
+			<text
+				y="{{impliedDayBorder + (i * dayHeight) + (dayHeight * 0.75)}}"
+				x="{{timelineLeft + dayWidth + daySquareStrokeWidth + 20}}"
+				text-anchor="start"
+			>
+				{{day.weekday}}
+			</text>
+		{{/each}}
+	</TransitioningGroup>
+
+	<TransitioningGroup visible={{showFridaySundayRange}}>
+		<rect
+			y="{{ fridaySundayRangeY }}"
+			x="{{ dayLeftX - dayRangeBarWidth }}"
+			width="{{ dayRangeBarWidth }}"
+			height="{{ fridaySundayRangeHeight }}"
+			class="green-fill"
 		>
-			{{#each days as day, i}}
-				<text
-					y="{{impliedDayBorder + (i * dayHeight) + (dayHeight * 0.75)}}"
-					x="{{dayWidth + daySquareStrokeWidth + 20}}"
-					text-anchor="start"
-				>
-					{{day.weekday}}
-				</text>
-			{{/each}}
-		</g>
-	{{/if}}
+		</rect>
+		<polyline
+			fill="none"
+			points="{{fridaySundayRangePointerPoints}}"
+			class="green-stroke pointer-line"
+		/>
+		<text
+			y={{fridaySundayRangePointerLeft.y + 4}}
+			x={{fridaySundayRangePointerLeft.x - 4}}
+			width={{fridaySundayRangePointerLeft.x}}
+			text-anchor="end"
+			class="green-fill"
+		>
+			Jesus's time in tomb (traditional)
+		</text>
+	</TransitioningGroup>
 
-	{{#if showFridaySundayRange}}
-		<g>
-
-		</g>
-	{{/if}}
+	<TransitioningGroup visible={{showDayOfMonth}}>
+		{{#each days as day, i}}
+			<text
+				x={{ timelineLeft + (dayWidth / 2) }}
+				width={{ dayWidth }}
+				y={{ getDayY(i + .8) }}
+				class="navy-fill"
+				text-anchor="middle"
+			>
+				{{day.number}}
+			</text>
+		{{/each}}
+	</TransitioningGroup>
 
 </svg>
 
 <style>
-$yellow: #FFDC00;
-$gray: #AAAAAA;
-$red: #FF4136;
-$navy: #001F3F;
+@import "./variables";
 
 .day-box {
 	stroke: $navy;
 	fill: transparent;
+}
+
+.navy-fill {
+	fill: $navy;
 }
 
 .daylight-box {
@@ -73,14 +104,27 @@ $navy: #001F3F;
 	fill-opacity: 0.5;
 }
 
+.green-fill {
+	fill: $green;
+}
+.green-stroke {
+	stroke: $green;
+}
+
+.pointer-line {
+	stroke-width: 2;
+}
+
 text {
 	font-size: 16px;
 }
 </style>
 
 <script>
+import TransitioningGroup from './TransitioningGroup.html'
 import combine from 'combine-arrays'
-import { fade, fly } from 'svelte-transitions'
+
+const buildPoints = (...arrays) => arrays.map(([ x, y]) => `${x},${y}`).join(' ')
 
 export default {
 	data() {
@@ -92,19 +136,42 @@ export default {
 			dayHeight: 100,
 			dayWidth: 100,
 			daySquareStrokeWidth: 2,
+			timelineLeft: 300,
+			dayRangeBarWidth: 20,
 		}
 	},
 	computed: {
 		impliedDayBorder: daySquareStrokeWidth => daySquareStrokeWidth / 2,
 		highlightedDays: (showFridayHighlight, showSundayHighlight) => [
-				false,
-				showFridayHighlight,
-				false,
-				showSundayHighlight
-			]
+			false,
+			showFridayHighlight,
+			false,
+			showSundayHighlight
+		],
+		getDayY: (dayHeight, impliedDayBorder) => dayPosition =>
+			impliedDayBorder + (dayHeight * dayPosition),
+		dayLeftX: (timelineLeft, daySquareStrokeWidth) =>
+			timelineLeft - (daySquareStrokeWidth / 2),
+
+
+		fridaySundayRangeY: getDayY => getDayY(1.875),
+		fridaySundayRangeHeight: dayHeight => dayHeight * 1.5,
+		fridaySundayRangeMidpoint: (fridaySundayRangeY, fridaySundayRangeHeight) =>
+			fridaySundayRangeY + (fridaySundayRangeHeight / 2),
+		fridaySundayRangePointerRightX: (dayLeftX, dayRangeBarWidth) =>
+			dayLeftX - dayRangeBarWidth,
+		fridaySundayRangePointerPoints: (fridaySundayRangePointerRightX, fridaySundayRangeMidpoint) =>
+			buildPoints(
+				[fridaySundayRangePointerRightX, fridaySundayRangeMidpoint],
+				[fridaySundayRangePointerRightX - 20, fridaySundayRangeMidpoint],
+			),
+		fridaySundayRangePointerLeft: (fridaySundayRangePointerRightX, fridaySundayRangeMidpoint) => ({
+				x: fridaySundayRangePointerRightX - 20,
+				y: fridaySundayRangeMidpoint,
+			})
 	},
-	transitions: {
-		fly
+	components: {
+		TransitioningGroup
 	}
 }
 </script>

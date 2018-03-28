@@ -1,0 +1,19 @@
+{{#if visible}}
+<g
+	in:fly="{ y: 100 }"
+	out:fly="{ y: -100 }"
+>
+	<slot>
+</g>
+{{/if}}
+
+<script>
+import { fade, fly } from 'svelte-transitions'
+
+export default {
+	namespace: 'svg',
+	transitions: {
+		fly
+	},
+}
+</script>

@@ -1,5 +1,6 @@
 <svg
-	style="height: {{((days.length + .5) * dayHeight) + daySquareStrokeWidth}}px; width: 510px"
+	style="height: {{((days.length + .5) * dayHeight) + daySquareStrokeWidth}}px; width: {{narrow ? 350 : 490}}px"
+	data-narrow={{narrow}}
 >
 	<TransitioningGroup visible={{showTimeline}}>
 		{{#each days as day, i}}
@@ -82,19 +83,28 @@
 		</rect>
 		<Line
 			stroke={{olive}}
-			leftX={{leftRangeBarX - 20}}
+			leftX={{dayLeftX - pointerLength}}
 			leftY={{fridaySundayRangeMidpoint}}
 			rightX={{leftRangeBarX}}
 			rightY={{fridaySundayRangeMidpoint}}
 		/>
 		<text
-			y={{fridaySundayRangeMidpoint + textDistanceFromPointer}}
-			x={{leftRangeBarX - 20 - textDistanceFromPointer}}
-			width={{leftRangeBarX - 20 - textDistanceFromPointer}}
+			y={{fridaySundayRangeMidpoint - 4 - textDistanceFromPointer}}
+			x={{dayLeftX - pointerLength - textDistanceFromPointer}}
+			width={{dayLeftX - pointerLength - textDistanceFromPointer}}
 			text-anchor="end"
 			fill="{{black}}"
 		>
-			Time in tomb (traditional)
+			Time in tomb
+		</text>
+		<text
+			y={{fridaySundayRangeMidpoint + 12 + textDistanceFromPointer}}
+			x={{dayLeftX - pointerLength - textDistanceFromPointer}}
+			width={{dayLeftX - pointerLength - textDistanceFromPointer}}
+			text-anchor="end"
+			fill="{{black}}"
+		>
+			(traditional)
 		</text>
 	</TransitioningGroup>
 
@@ -116,13 +126,13 @@
 		<Line
 			rightX={{dayLeftX}}
 			rightY={{lambSacrificedY}}
-			leftX={{dayLeftX - 50}}
+			leftX={{dayLeftX - pointerLength}}
 			leftY={{lambSacrificedY - 24}}
 		/>
 		<text
 			y="{{lambSacrificedY - 24 + textDistanceFromPointer}}"
-			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
-			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
 			text-anchor="end"
 			fill="{{black}}"
 		>
@@ -142,13 +152,13 @@
 		<Line
 			rightX={{dayLeftX}}
 			rightY={{highSabbathMidpointY}}
-			leftX={{dayLeftX - 50}}
+			leftX={{dayLeftX - pointerLength}}
 			leftY={{highSabbathMidpointY}}
 			stroke={{green}}
 		/>
 		<text
 			y="{{highSabbathMidpointY + textDistanceFromPointer}}"
-			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
 			width="{{dayLeftX - textDistanceFromPointer}}"
 			text-anchor="end"
 			fill="{{black}}"
@@ -161,12 +171,12 @@
 		<Line
 			rightX={{dayLeftX}}
 			rightY={{lambEatenY}}
-			leftX={{dayLeftX - 50}}
+			leftX={{dayLeftX - pointerLength}}
 			leftY={{lambEatenY}}
 		/>
 		<text
 			y={{lambEatenY + textDistanceFromPointer}}
-			x={{dayLeftX - 50 - textDistanceFromPointer}}
+			x={{dayLeftX - pointerLength - textDistanceFromPointer}}
 			width={{dayLeftX - textDistanceFromPointer}}
 			text-anchor="end"
 			fill="{{black}}"
@@ -189,7 +199,7 @@
 			fill="{{red}}"
 		/>
 		<Line
-			rightX={{dayRightX + 50}}
+			rightX={{dayRightX + pointerLength}}
 			rightY={{ getDayY(2) }}
 			leftX={{dayRightX}}
 			leftY={{ getDayY(2) }}
@@ -197,7 +207,7 @@
 		/>
 		<text
 			y={{ getDayY(2) - textDistanceFromPointer }}
-			x={{ dayRightX + 50 + textDistanceFromPointer }}
+			x={{ dayRightX + pointerLength + textDistanceFromPointer }}
 			width="140"
 			text-anchor="start"
 			fill="{{black}}"
@@ -206,7 +216,7 @@
 		</text>
 		<text
 			y={{ getDayY(2) + 16 }}
-			x={{ dayRightX + 50 + textDistanceFromPointer }}
+			x={{ dayRightX + pointerLength + textDistanceFromPointer }}
 			width="140"
 			text-anchor="start"
 			fill="{{black}}"
@@ -220,13 +230,13 @@
 		<Line
 			rightX={{dayLeftX}}
 			rightY={{lambSacrificedY}}
-			leftX={{dayLeftX - 50}}
+			leftX={{dayLeftX - pointerLength}}
 			leftY={{lambSacrificedY}}
 		/>
 		<text
 			y="{{lambSacrificedY + textDistanceFromPointer}}"
-			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
-			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
 			text-anchor="end"
 			fill="{{black}}"
 		>
@@ -238,13 +248,13 @@
 		<Line
 			rightX={{dayLeftX}}
 			rightY={{burialY}}
-			leftX={{dayLeftX - 50}}
+			leftX={{dayLeftX - pointerLength}}
 			leftY={{burialY + 20}}
 		/>
 		<text
 			y="{{burialY + 20 + textDistanceFromPointer}}"
-			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
-			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
 			text-anchor="end"
 			fill="{{black}}"
 		>
@@ -256,13 +266,13 @@
 		<Line
 			rightX={{dayLeftX}}
 			rightY={{lastSupperY}}
-			leftX={{dayLeftX - 50}}
+			leftX={{dayLeftX - pointerLength}}
 			leftY={{lastSupperY}}
 		/>
 		<text
 			y="{{lastSupperY + textDistanceFromPointer}}"
-			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
-			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
 			text-anchor="end"
 			fill="{{black}}"
 		>
@@ -282,13 +292,13 @@
 		<Line
 			rightX={{dayLeftX}}
 			rightY={{weeklySabbathMidpointY}}
-			leftX={{dayLeftX - 50}}
+			leftX={{dayLeftX - pointerLength}}
 			leftY={{weeklySabbathMidpointY}}
 			stroke={{fuchsia}}
 		/>
 		<text
 			y="{{weeklySabbathMidpointY + textDistanceFromPointer}}"
-			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
 			width="{{dayLeftX - textDistanceFromPointer}}"
 			text-anchor="end"
 			fill="{{black}}"
@@ -301,13 +311,13 @@
 		<Line
 			rightX={{dayLeftX}}
 			rightY={{resurrectionY}}
-			leftX={{dayLeftX - 50}}
+			leftX={{dayLeftX - pointerLength}}
 			leftY={{resurrectionY}}
 		/>
 		<text
 			y="{{resurrectionY + textDistanceFromPointer}}"
-			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
-			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
 			text-anchor="end"
 			fill="{{black}}"
 		>
@@ -319,13 +329,13 @@
 		<Line
 			rightX={{dayLeftX}}
 			rightY={{traditionalBurialY}}
-			leftX={{dayLeftX - 50}}
+			leftX={{dayLeftX - pointerLength}}
 			leftY={{traditionalBurialY}}
 		/>
 		<text
 			y="{{traditionalBurialY + textDistanceFromPointer}}"
-			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
-			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
 			text-anchor="end"
 			fill="{{black}}"
 		>
@@ -344,15 +354,15 @@
 		</rect>
 		<Line
 			stroke={{olive}}
-			leftX={{leftRangeBarX - 20}}
+			leftX={{dayLeftX - pointerLength}}
 			leftY={{timeInTombMidpointY}}
 			rightX={{leftRangeBarX}}
 			rightY={{timeInTombMidpointY}}
 		/>
 		<text
 			y={{timeInTombMidpointY + textDistanceFromPointer}}
-			x={{leftRangeBarX - 20 - textDistanceFromPointer}}
-			width={{leftRangeBarX - 20 - textDistanceFromPointer}}
+			x={{dayLeftX - pointerLength - textDistanceFromPointer}}
+			width={{dayLeftX - pointerLength - textDistanceFromPointer}}
 			text-anchor="end"
 			fill="{{black}}"
 		>
@@ -380,6 +390,9 @@
 text {
 	font-size: 16px;
 }
+[data-narrow=true] text {
+	font-size: 13px;
+}
 </style>
 
 <script>
@@ -398,14 +411,16 @@ export default {
 				weekday: [ `Thursday`, `Friday`, `Saturday`, `Sunday` ],
 			}),
 			dayHeight: 100,
-			dayWidth: 100,
 			daySquareStrokeWidth: 2,
-			timelineLeft: 230,
-			rangeBarWidth: 20,
 			textDistanceFromPointer: 4,
+			narrow: false,
 		}, colors)
 	},
 	computed: {
+		pointerLength: narrow => narrow ? 25 : 50,
+		rangeBarWidth: narrow => narrow ? 10 : 20,
+		dayWidth: (narrow, dayHeight) => narrow ? 60 : dayHeight,
+		timelineLeft: narrow => narrow ? 145 : 200,
 		visualizationHeight: dayHeight => visualizationHeight(dayHeight),
 		impliedDayBorder: daySquareStrokeWidth => daySquareStrokeWidth / 2,
 		highlightedDays: (showFridayHighlight, showSundayHighlight) => [

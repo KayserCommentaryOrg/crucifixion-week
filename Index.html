@@ -36,8 +36,8 @@
 					showWeekdayLabels={{true}}
 					showDaylightNighttimeLabels={{true}}
 					showTimeline={{true}}
-					dayHeight={{daySize}}
-					dayWidth={{daySize}}
+					narrow={{narrowScreen}}
+					:dayHeight
 				/>
 			</div>
 		</section>
@@ -91,8 +91,8 @@
 					showHighSabbath={{true}}
 					showFeastOfUnleavenedBread={{true}}
 					showTimeline={{true}}
-					dayHeight={{daySize}}
-					dayWidth={{daySize}}
+					narrow={{narrowScreen}}
+					:dayHeight
 				/>
 			</div>
 		</section>
@@ -135,8 +135,8 @@
 					showHighSabbath={{true}}
 					showCrucifixion={{true}}
 					showTimeline={{true}}
-					dayHeight={{daySize}}
-					dayWidth={{daySize}}
+					narrow={{narrowScreen}}
+					:dayHeight
 				/>
 			</div>
 		</section>
@@ -190,8 +190,8 @@
 					showCrucifixion={{true}}
 					showBuried={{true}}
 					showTimeline={{true}}
-					dayHeight={{daySize}}
-					dayWidth={{daySize}}
+					narrow={{narrowScreen}}
+					:dayHeight
 				/>
 			</div>
 		</section>
@@ -223,8 +223,8 @@
 					showBuried={{true}}
 					showLastSupper={{true}}
 					showTimeline={{true}}
-					dayHeight={{daySize}}
-					dayWidth={{daySize}}
+					narrow={{narrowScreen}}
+					:dayHeight
 				/>
 			</div>
 		</section>
@@ -264,8 +264,8 @@
 					showWeekdayLabels={{true}}
 					showWeeklySabbath={{true}}
 					showTimeline={{true}}
-					dayHeight={{daySize}}
-					dayWidth={{daySize}}
+					narrow={{narrowScreen}}
+					:dayHeight
 				/>
 			</div>
 		</section>
@@ -327,8 +327,8 @@
 					showBuried={{true}}
 					showResurrection={{true}}
 					showTimeline={{true}}
-					dayHeight={{daySize}}
-					dayWidth={{daySize}}
+					narrow={{narrowScreen}}
+					:dayHeight
 				/>
 			</div>
 		</section>
@@ -376,8 +376,8 @@
 					showResurrection={{true}}
 					showTimeFromBurialToResurrection={{true}}
 					showTimeline={{true}}
-					dayHeight={{daySize}}
-					dayWidth={{daySize}}
+					narrow={{narrowScreen}}
+					:dayHeight
 				/>
 			</div>
 		</section>
@@ -400,6 +400,22 @@
 			<p>
 				Send this page to your church and pastors, and let them know they're a day late on Good Friday!
 			</p>
+
+			<div class="mobile-timeline">
+				<Timeline
+					showHighSabbath={{true}}
+					showWeeklySabbath={{true}}
+					showWeekdayLabels={{true}}
+					showCrucifixion={{true}}
+					showBuried={{true}}
+					showResurrection={{true}}
+					showTraditionalBurial={{true}}
+					showTimeline={{true}}
+					narrow={{narrowScreen}}
+					:dayHeight
+				/>
+			</div>
+
 			<h2>
 				More resources
 			</h2>
@@ -417,21 +433,6 @@
 			<p>
 				The source code for this visualization is public at <a href="https://github.com/KayserCommentaryOrg/crucifixion-week">github.com/KayserCommentaryOrg/crucifixion-week</a>
 			</p>
-
-			<div class="mobile-timeline">
-				<Timeline
-					showHighSabbath={{true}}
-					showWeeklySabbath={{true}}
-					showWeekdayLabels={{true}}
-					showCrucifixion={{true}}
-					showBuried={{true}}
-					showResurrection={{true}}
-					showTraditionalBurial={{true}}
-					showTimeline={{true}}
-					dayHeight={{daySize}}
-					dayWidth={{daySize}}
-				/>
-			</div>
 		</section>
 
 	</div>
@@ -452,10 +453,10 @@
 				:showWeeklySabbath
 				:showResurrection
 				:showTimeFromBurialToResurrection
-				:showTimeline
 				:showTraditionalBurial
-				dayHeight={{daySize}}
-				dayWidth={{daySize}}
+				:showTimeline
+				narrow={{narrowScreen}}
+				:dayHeight
 			/>
 		</div>
 	</div>
@@ -481,8 +482,8 @@
 
 .timeline-column {
 	@include column;
-	min-width: 510px;
-	flex-basis: 510px;
+	min-width: 490px;
+	flex-basis: 490px;
 	flex-shrink: 0;
 }
 .sticky-timeline {
@@ -560,9 +561,16 @@ export default {
 		}, defaultTimelineState)
 	},
 	computed: {
-		daySize: windowHeight => windowHeight
-			? windowHeight > 450 ? 100 : 80
-			: 100,
+		narrowScreen: windowWidth => windowWidth && windowWidth < 570,
+		dayHeight: (windowHeight, narrowScreen) => {
+			const shortScreen = windowHeight && windowHeight < 450
+
+			if (shortScreen || narrowScreen) {
+				return 80
+			}
+
+			return 100
+		},
 	},
 	components: {
 		Timeline,
@@ -571,6 +579,7 @@ export default {
 		updateWindow() {
 			this.set({
 				windowHeight: window.document.documentElement.clientHeight,
+				windowWidth: window.document.documentElement.clientWidth,
 			})
 		},
 		hideTimeline() {
@@ -580,14 +589,14 @@ export default {
 			))
 		},
 		updateTimeline() {
-			const { windowHeight, lastSection, daySize } = this.get()
+			const { windowHeight, lastSection, dayHeight } = this.get()
 
 			const {
 				top: textSectionTop,
 				bottom: textSectionBottom,
 			} = this.refs.textSections.getBoundingClientRect()
 
-			const visualizationMargin = (windowHeight - visualizationHeight(daySize)) / 2
+			const visualizationMargin = (windowHeight - visualizationHeight(dayHeight)) / 2
 
 			const visualizationHasRoom = textSectionTop < visualizationMargin
 				&& textSectionBottom > (windowHeight - visualizationMargin)

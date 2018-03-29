@@ -4,7 +4,7 @@
 	<TransitioningGroup visible={{showTimeline}}>
 		{{#each days as day, i}}
 			<rect
-				y="{{impliedDayBorder + i * dayHeight}}"
+				y="{{impliedDayBorder + getDayY(i)}}"
 				x="{{timelineLeft}}"
 				width="{{dayWidth}}"
 				height="{{dayHeight}}"
@@ -14,7 +14,7 @@
 			>
 			</rect>
 			<rect
-				y="{{i * dayHeight}}"
+				y="{{getDayY(i)}}"
 				x="{{timelineLeft}}"
 				width="{{dayWidth}}"
 				height="{{dayHeight / 2}}"
@@ -22,7 +22,7 @@
 			>
 			</rect>
 			<rect
-				y="{{i * dayHeight + (dayHeight * 0.5)}}"
+				y="{{getDayY(i) + (dayHeight * 0.5)}}"
 				x="{{timelineLeft}}"
 				width="{{dayWidth}}"
 				height="{{dayHeight / 2}}"
@@ -395,7 +395,7 @@ export default {
 			showSundayHighlight,
 		],
 		getDayY: (dayHeight, impliedDayBorder) => dayPosition =>
-			impliedDayBorder + (dayHeight * dayPosition),
+			8 + impliedDayBorder + (dayHeight * dayPosition),
 		dayLeftX: (timelineLeft, impliedDayBorder) =>
 			timelineLeft - impliedDayBorder,
 		dayRightX: (timelineLeft, dayWidth, impliedDayBorder) =>

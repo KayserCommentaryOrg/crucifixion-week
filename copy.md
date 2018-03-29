@@ -179,9 +179,9 @@ There are many references to Jesus being in the grave for three days in the gosp
 
 Theories that involve a Sunday resurrection and a crucifixion on Wednesday or Friday can not account for both.
 
-Three days, exclusive ("the third day"): Matthew 27:62b-63, Mark 8:31
+Three days, exclusive on first day ("the third day"): Matthew 17:22-23a, Matthew 16:21, Matthew 20:18-19, Mark 9:31, Mark 10:33-34, Mark 9:31, Luke 9:22
 
-Three days, inclusive ("after three days"): Matthew 17:22-23a, Matthew 16:21, Matthew 20:18-19, Mark 9:31, Mark 10:33-34, Mark 9:31, Luke 9:22
+Three days, inclusive on first day ("after three days"): Matthew 27:62b-63, Mark 8:31
 
 # In conclusion
 

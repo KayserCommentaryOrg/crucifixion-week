@@ -524,6 +524,7 @@ section {
 
 <script>
 import Timeline from './Timeline.html'
+import visualizationHeight from './visualization-height.js'
 
 const defaultTimelineState = {
 	showFridaySundayRange: false,
@@ -581,17 +582,19 @@ export default {
 			))
 		},
 		updateTimeline() {
-			const { windowHeight, lastSection } = this.get()
+			const { windowHeight, lastSection, daySize } = this.get()
 
 			const {
 				top: textSectionTop,
 				bottom: textSectionBottom,
 			} = this.refs.textSections.getBoundingClientRect()
 
-			const textInViewport = textSectionTop < 100
-				&& textSectionBottom > (windowHeight - 100)
+			const visualizationMargin = (windowHeight - visualizationHeight(daySize)) / 2
 
-			if (!textInViewport) {
+			const visualizationHasRoom = textSectionTop < visualizationMargin
+				&& textSectionBottom > (windowHeight - visualizationMargin)
+
+			if (!visualizationHasRoom) {
 				this.hideTimeline()
 				return
 			}

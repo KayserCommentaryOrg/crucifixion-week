@@ -368,6 +368,7 @@ text {
 import TransitioningGroup from './TransitioningGroup.html'
 import Line from './Line.html'
 import combine from 'combine-arrays'
+import visualizationHeight from './visualization-height.js'
 
 import * as colors from './colors.js'
 
@@ -387,6 +388,7 @@ export default {
 		}, colors)
 	},
 	computed: {
+		visualizationHeight: dayHeight => visualizationHeight(dayHeight),
 		impliedDayBorder: daySquareStrokeWidth => daySquareStrokeWidth / 2,
 		highlightedDays: (showFridayHighlight, showSundayHighlight) => [
 			false,

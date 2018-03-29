@@ -11,13 +11,19 @@
 		<style>
 			body {
 				font-family: 'vollkorn', georgia;
+				margin: 0;
+				padding: 0;
 			}
 			.centering-wrapper {
 				padding: 0 32px;
 				margin: 0 auto;
 				max-width: 1050px;
 			}
-		</style>
+			@media (max-width: 500px) {
+				.centering-wrapper {
+					padding: 0 16px;
+				}
+			</style>
 	</head>
 	<body>
 		<div class="centering-wrapper">

@@ -3,6 +3,8 @@ import resolve from 'rollup-plugin-node-resolve'
 import svelte from 'rollup-plugin-svelte'
 import json from 'rollup-plugin-json'
 import sveltePreprocessPostcss from 'svelte-preprocess-postcss'
+import babel from 'rollup-plugin-babel'
+import minify from 'rollup-plugin-babel-minify'
 
 export default {
 	input: `./index.js`,
@@ -29,5 +31,20 @@ export default {
 		resolve({
 			browser: true,
 		}),
+		babel({
+			babelrc: false,
+			presets: [
+				[
+					`env`,
+					{
+						modules: false,
+					},
+				],
+			],
+			plugins: [
+				`external-helpers`,
+			],
+		}),
+		minify(),
 	],
 }

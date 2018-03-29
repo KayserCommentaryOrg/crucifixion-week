@@ -456,7 +456,7 @@
 				:showWeeklySabbath
 				:showResurrection
 				:showTimeFromBurialToResurrection
-				showTimeline={{anySectionVisible}}
+				:showTimeline
 				dayHeight={{daySize}}
 				dayWidth={{daySize}}
 			/>
@@ -484,8 +484,8 @@
 
 .timeline-column {
 	@include column;
-	min-width: 500px;
-	flex-basis: 500px;
+	min-width: 510px;
+	flex-basis: 510px;
 	flex-shrink: 0;
 }
 .sticky-timeline {
@@ -557,7 +557,6 @@ export default {
 	},
 	data() {
 		return Object.assign({
-			anySectionVisible: false,
 			lastSection: null,
 		}, defaultTimelineState)
 	},
@@ -575,8 +574,27 @@ export default {
 				windowHeight: window.document.documentElement.clientHeight,
 			})
 		},
+		hideTimeline() {
+			this.set(Object.assign(
+				{ showTimeline: false },
+				defaultTimelineState
+			))
+		},
 		updateTimeline() {
 			const { windowHeight, lastSection } = this.get()
+
+			const {
+				top: textSectionTop,
+				bottom: textSectionBottom,
+			} = this.refs.textSections.getBoundingClientRect()
+
+			const textInViewport = textSectionTop < 100
+				&& textSectionBottom > (windowHeight - 100)
+
+			if (!textInViewport) {
+				this.hideTimeline()
+				return
+			}
 
 			const middleOfScreen = windowHeight / 2
 
@@ -587,20 +605,14 @@ export default {
 			})
 
 			if (visibleAboveMiddleOfScreen.length === 0) {
-				this.set(Object.assign(
-					{ anySectionVisible: false },
-					defaultTimelineState
-				))
+				this.hideTimeline()
 				return
 			}
 
 			const lastSectionInTopHalfOfScreen = visibleAboveMiddleOfScreen.pop()
 
 			if (lastSectionInTopHalfOfScreen === lastSection) {
-				this.set(Object.assign(
-					{ anySectionVisible: false },
-					defaultTimelineState
-				))
+				this.hideTimeline()
 				return
 			}
 
@@ -609,7 +621,7 @@ export default {
 			)
 
 			this.set(Object.assign({
-				anySectionVisible: true,
+				showTimeline: true,
 				lastSection,
 			}, defaultTimelineState, trueValues))
 

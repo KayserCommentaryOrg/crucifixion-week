@@ -6,6 +6,8 @@
 />
 
 <script>
+import { black } from './colors.js'
+
 const buildPoints = (...arrays) => arrays.map(
 	([ x, y ]) => `${ x },${ y }`
 ).join(` `)
@@ -18,7 +20,7 @@ export default {
 			leftY: null,
 			rightX: null,
 			rightY: null,
-			stroke: `black`,
+			stroke: black,
 		}
 	},
 	computed: {

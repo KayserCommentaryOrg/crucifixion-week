@@ -1,0 +1,9 @@
+export const yellow = `#FFDC00`
+export const gray = `#AAAAAA`
+export const red = `#cc412e`
+export const navy = `#001F3F`
+export const olive = `#3D9970`
+export const green = `#2ECC40`
+export const lime = `#01FF70`
+export const fuchsia = `#cc2eb9`
+export const black = `#222`

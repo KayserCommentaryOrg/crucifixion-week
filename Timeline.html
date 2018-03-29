@@ -37,6 +37,7 @@
 				y="{{impliedDayBorder + (i * dayHeight) + (dayHeight * 0.75)}}"
 				x="{{dayRightX + 20}}"
 				text-anchor="start"
+				fill="{{black}}"
 			>
 				{{day.weekday}}
 			</text>
@@ -64,7 +65,7 @@
 			x={{leftRangeBarX - 20 - textDistanceFromPointer}}
 			width={{leftRangeBarX - 20 - textDistanceFromPointer}}
 			text-anchor="end"
-			fill="{{olive}}"
+			fill="{{black}}"
 		>
 			Jesus's time in tomb (traditional)
 		</text>
@@ -96,6 +97,7 @@
 			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			text-anchor="end"
+			fill="{{black}}"
 		>
 			Lamb sacrificed
 		</text>
@@ -122,6 +124,7 @@
 			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			width="{{dayLeftX - textDistanceFromPointer}}"
 			text-anchor="end"
+			fill="{{black}}"
 		>
 			High Sabbath
 		</text>
@@ -139,6 +142,7 @@
 			x={{dayLeftX - 50 - textDistanceFromPointer}}
 			width={{dayLeftX - textDistanceFromPointer}}
 			text-anchor="end"
+			fill="{{black}}"
 		>
 			Lamb supper eaten
 		</text>
@@ -169,6 +173,7 @@
 			x={{ dayRightX + 50 + textDistanceFromPointer }}
 			width="140"
 			text-anchor="start"
+			fill="{{black}}"
 		>
 			Feast of
 		</text>
@@ -177,6 +182,7 @@
 			x={{ dayRightX + 50 + textDistanceFromPointer }}
 			width="140"
 			text-anchor="start"
+			fill="{{black}}"
 		>
 			Unleavened Bread
 		</text>
@@ -195,6 +201,7 @@
 			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			text-anchor="end"
+			fill="{{black}}"
 		>
 			Jesus crucified
 		</text>
@@ -212,6 +219,7 @@
 			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			text-anchor="end"
+			fill="{{black}}"
 		>
 			Jesus buried
 		</text>
@@ -238,6 +246,7 @@
 			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			width="{{dayLeftX - textDistanceFromPointer}}"
 			text-anchor="end"
+			fill="{{black}}"
 		>
 			Weekly Sabbath
 		</text>
@@ -255,6 +264,7 @@
 			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
 			text-anchor="end"
+			fill="{{black}}"
 		>
 			Resurrection
 		</text>
@@ -281,7 +291,7 @@
 			x={{leftRangeBarX - 20 - textDistanceFromPointer}}
 			width={{leftRangeBarX - 20 - textDistanceFromPointer}}
 			text-anchor="end"
-			fill="{{olive}}"
+			fill="{{black}}"
 		>
 			Jesus's time in tomb
 		</text>
@@ -314,9 +324,11 @@ import TransitioningGroup from './TransitioningGroup.html'
 import Line from './Line.html'
 import combine from 'combine-arrays'
 
+import * as colors from './colors.js'
+
 export default {
 	data() {
-		return {
+		return Object.assign({
 			days: combine({
 				number: [ 14, 15, 16, 17 ],
 				weekday: [ `Thursday`, `Friday`, `Saturday`, `Sunday` ],
@@ -327,16 +339,7 @@ export default {
 			timelineLeft: 300,
 			rangeBarWidth: 20,
 			textDistanceFromPointer: 4,
-
-			yellow: `#FFDC00`,
-			gray: `#AAAAAA`,
-			red: `#cc412e`,
-			navy: `#001F3F`,
-			olive: `#3D9970`,
-			green: `#2ECC40`,
-			lime: `#01FF70`,
-			fuchsia: `#cc2eb9`,
-		}
+		}, colors)
 	},
 	computed: {
 		impliedDayBorder: daySquareStrokeWidth => daySquareStrokeWidth / 2,

@@ -1,5 +1,5 @@
 <svg
-	style="height: {{((days.length + .5) * dayHeight) + daySquareStrokeWidth}}px; width: 600px"
+	style="height: {{((days.length + .5) * dayHeight) + daySquareStrokeWidth}}px; width: 500px"
 >
 	<TransitioningGroup visible={{showTimeline}}>
 		{{#each days as day, i}}
@@ -94,7 +94,7 @@
 			text-anchor="end"
 			fill="{{black}}"
 		>
-			Jesus's time in tomb (traditional)
+			Time in tomb (traditional)
 		</text>
 	</TransitioningGroup>
 
@@ -230,7 +230,7 @@
 			text-anchor="end"
 			fill="{{black}}"
 		>
-			Jesus crucified
+			Crucifixion
 		</text>
 	</TransitioningGroup>
 
@@ -248,7 +248,7 @@
 			text-anchor="end"
 			fill="{{black}}"
 		>
-			Jesus buried
+			Burial
 		</text>
 	</TransitioningGroup>
 
@@ -338,7 +338,7 @@
 			text-anchor="end"
 			fill="{{black}}"
 		>
-			Jesus's time in tomb
+			Time in tomb
 		</text>
 	</TransitioningGroup>
 </svg>
@@ -359,7 +359,7 @@
 	fill-opacity: 0.5;
 }
 
-:global(text) {
+text {
 	font-size: 16px;
 }
 </style>
@@ -381,7 +381,7 @@ export default {
 			dayHeight: 100,
 			dayWidth: 100,
 			daySquareStrokeWidth: 2,
-			timelineLeft: 300,
+			timelineLeft: 220,
 			rangeBarWidth: 20,
 			textDistanceFromPointer: 4,
 		}, colors)

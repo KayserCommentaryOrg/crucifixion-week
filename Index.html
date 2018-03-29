@@ -29,6 +29,17 @@
 			<p>
 				More than making the timeline easier to read, this is relevant because the Jews counted days as running from sundown to sundown.
 			</p>
+
+			<div class="mobile-timeline">
+				<Timeline
+					showFridaySundayRange={{true}}
+					showWeekdayLabels={{true}}
+					showDaylightNighttimeLabels={{true}}
+					showTimeline={{true}}
+					dayHeight={{daySize}}
+					dayWidth={{daySize}}
+				/>
+			</div>
 		</section>
 
 		<section
@@ -75,6 +86,19 @@
 			<p>
 				So, we have the Passover meal on the evening of the 14th, and the 15th as the first day of the feast of unleavened bread every year.
 			</p>
+
+			<div class="mobile-timeline">
+				<Timeline
+					showDayOfMonth={{true}}
+					showLambSacrificed={{true}}
+					showLambSupperEaten={{true}}
+					showHighSabbath={{true}}
+					showFeastOfUnleavenedBread={{true}}
+					showTimeline={{true}}
+					dayHeight={{daySize}}
+					dayWidth={{daySize}}
+				/>
+			</div>
 		</section>
 
 		<section
@@ -109,6 +133,18 @@
 			<p>
 				The other gospels confirm that he was killed on a preparation day: Luke 23:54, Matthew 27:62, Mark 15:42.
 			</p>
+
+			<div class="mobile-timeline">
+				<Timeline
+					showDayOfMonth={{true}}
+					showLambSacrificed={{true}}
+					showHighSabbath={{true}}
+					showCrucifixion={{true}}
+					showTimeline={{true}}
+					dayHeight={{daySize}}
+					dayWidth={{daySize}}
+				/>
+			</div>
 		</section>
 
 		<section
@@ -156,6 +192,18 @@
 				John specifically calls out that the fact that the day of preparation was not just for a weekly Saturday Sabbath.
 			</p>
 
+			<div class="mobile-timeline">
+				<Timeline
+					showDayOfMonth={{true}}
+					showLambSacrificed={{true}}
+					showHighSabbath={{true}}
+					showCrucifixion={{true}}
+					showBuried={{true}}
+					showTimeline={{true}}
+					dayHeight={{daySize}}
+					dayWidth={{daySize}}
+				/>
+			</div>
 		</section>
 
 		<section
@@ -175,6 +223,20 @@
 			<p>
 				Jesus did not sacrifice a lamb to share with the apostles, he was the lamb sacrificed on the afternoon of the 14th, as the Passover had been forecasting for centuries.
 			</p>
+
+			<div class="mobile-timeline">
+				<Timeline
+					showDayOfMonth={{true}}
+					showLambSacrificed={{true}}
+					showHighSabbath={{true}}
+					showCrucifixion={{true}}
+					showBuried={{true}}
+					showLastSupper={{true}}
+					showTimeline={{true}}
+					dayHeight={{daySize}}
+					dayWidth={{daySize}}
+				/>
+			</div>
 		</section>
 
 		<section
@@ -205,6 +267,17 @@
 				As it turns out, when we start placing the Bible's account of the resurrection, we'll see that this lines up nicely.
 			</p>
 
+			<div class="mobile-timeline">
+				<Timeline
+					showDayOfMonth={{true}}
+					showHighSabbath={{true}}
+					showWeekdayLabels={{true}}
+					showWeeklySabbath={{true}}
+					showTimeline={{true}}
+					dayHeight={{daySize}}
+					dayWidth={{daySize}}
+				/>
+			</div>
 		</section>
 
 		<section
@@ -262,6 +335,20 @@
 			<p>
 				If you go look earlier in the Gospels where it talks about preparing, having one Sabbath immediately following another still makes sense - while it is mentioned that the Sabbath was a special one, and a Passover preparation, only one singular day of preparation is ever mentioned.
 			</p>
+
+			<div class="mobile-timeline">
+				<Timeline
+					showHighSabbath={{true}}
+					showWeeklySabbath={{true}}
+					showWeekdayLabels={{true}}
+					showCrucifixion={{true}}
+					showBuried={{true}}
+					showResurrection={{true}}
+					showTimeline={{true}}
+					dayHeight={{daySize}}
+					dayWidth={{daySize}}
+				/>
+			</div>
 		</section>
 
 		<section
@@ -297,6 +384,19 @@
 			<p>
 				Three days, inclusive ("after three days"): Matthew 17:22-23a, Matthew 16:21, Matthew 20:18-19, Mark 9:31, Mark 10:33-34, Mark 9:31, Luke 9:22
 			</p>
+
+			<div class="mobile-timeline">
+				<Timeline
+					showWeekdayLabels={{true}}
+					showCrucifixion={{true}}
+					showBuried={{true}}
+					showResurrection={{true}}
+					showTimeFromBurialToResurrection={{true}}
+					showTimeline={{true}}
+					dayHeight={{daySize}}
+					dayWidth={{daySize}}
+				/>
+			</div>
 		</section>
 
 		<section
@@ -322,6 +422,20 @@
 				<li><a href="https://leanpub.com/december-25-jewish-style">"December 25 Jewish-Style"</a>, which includes work dating the life of Jesus</li>
 				<li><a href="https://kaysercommentary.com/Resources/Feasts%20of%20Israel.md">"Feasts of Israel and their Prophetic Significance"</a>, a handy cheat sheet describing the Old Testament feasts</li>
 			</ul>
+
+			<div class="mobile-timeline">
+				<Timeline
+					showHighSabbath={{true}}
+					showWeeklySabbath={{true}}
+					showWeekdayLabels={{true}}
+					showCrucifixion={{true}}
+					showBuried={{true}}
+					showResurrection={{true}}
+					showTimeline={{true}}
+					dayHeight={{daySize}}
+					dayWidth={{daySize}}
+				/>
+			</div>
 		</section>
 
 	</div>
@@ -352,7 +466,7 @@
 
 <style>
 @mixin column {
-	width: 50%;
+	flex-grow: 1;
 	height: 100%;
 	border: 0;
 	margin: 0;
@@ -365,10 +479,14 @@
 
 .text-column {
 	@include column;
+	max-width: 650px;
 }
 
 .timeline-column {
 	@include column;
+	min-width: 500px;
+	flex-basis: 500px;
+	flex-shrink: 0;
 }
 .sticky-timeline {
 	position: fixed;
@@ -380,9 +498,27 @@
 	justify-content: center;
 }
 
+.mobile-timeline {
+	display: none;
+}
+
 section {
 	padding-top: 32px;
 	padding-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+	.mobile-timeline {
+		display: inherit;
+	}
+	.timeline-column {
+		display: none;
+	}
+
+	section {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
 }
 </style>
 

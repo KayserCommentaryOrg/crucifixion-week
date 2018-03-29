@@ -6,6 +6,7 @@
 		<section
 			data-show-friday-sunday-range
 			data-show-weekday-labels
+			data-show-daylight-nighttime-labels
 		>
 			<p>
 				Traditionally, Christians have observed the crucifixion of Jesus on a Friday afternoon and rising from the dead before daylight on a Sunday.
@@ -319,6 +320,7 @@
 		<div class="sticky-timeline">
 			<Timeline
 				:showFridaySundayRange
+				:showDaylightNighttimeLabels
 				:showWeekdayLabels
 				:showDayOfMonth
 				:showLambSacrificed
@@ -387,6 +389,7 @@ const defaultTimelineState = {
 	showWeeklySabbath: false,
 	showResurrection: false,
 	showTimeFromBurialToResurrection: false,
+	showDaylightNighttimeLabels: false,
 }
 
 const makeTruthyMap = keys => keys.reduce((o, key) => {

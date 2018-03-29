@@ -31,6 +31,33 @@
 			</rect>
 		{{/each}}
 	</g>
+
+
+	<TransitioningGroup visible={{showDaylightNighttimeLabels}}>
+		{{#each days as day, i}}
+			<text
+				x="{{ timelineLeft + (dayWidth / 2) }}"
+				width="{{ dayWidth }}"
+				y="{{ getDayY(i + .3) }}"
+				fill="{{navy}}"
+				text-anchor="middle"
+			>
+				Night
+			</text>
+			<text
+				x="{{ timelineLeft + (dayWidth / 2) }}"
+				width="{{ dayWidth }}"
+				y="{{ getDayY(i + .8) }}"
+				fill="{{navy}}"
+				text-anchor="middle"
+			>
+				Day
+			</text>
+		{{/each}}
+	</TransitioningGroup>
+
+
+
 	<TransitioningGroup visible={{showWeekdayLabels}}>
 		{{#each days as day, i}}
 			<text

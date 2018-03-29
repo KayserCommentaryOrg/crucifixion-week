@@ -252,6 +252,24 @@
 		</text>
 	</TransitioningGroup>
 
+	<TransitioningGroup visible={{showLastSupper}}>
+		<Line
+			rightX={{dayLeftX}}
+			rightY={{lastSupperY}}
+			leftX={{dayLeftX - 50}}
+			leftY={{lastSupperY}}
+		/>
+		<text
+			y="{{lastSupperY + textDistanceFromPointer}}"
+			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			text-anchor="end"
+			fill="{{black}}"
+		>
+			Last supper
+		</text>
+	</TransitioningGroup>
+
 	<TransitioningGroup visible={{showWeeklySabbath}}>
 		<rect
 			y="{{ weeklySabbathRangeY }}"
@@ -409,6 +427,8 @@ export default {
 
 		burialY: getDayY => getDayY(0.95),
 		resurrectionY: getDayY => getDayY(3.25),
+
+		lastSupperY: getDayY => getDayY(0.05),
 
 		timeInTombMidpointY: (burialY, resurrectionY) =>
 			burialY + ((resurrectionY - burialY) / 2),

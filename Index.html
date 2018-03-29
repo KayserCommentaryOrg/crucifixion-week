@@ -332,6 +332,8 @@
 				:showWeeklySabbath
 				:showResurrection
 				:showTimeFromBurialToResurrection
+				dayHeight={{daySize}}
+				dayWidth={{daySize}}
 			/>
 		</div>
 	</div>
@@ -401,24 +403,29 @@ export default {
 	oncreate() {
 		this.updateWindow()
 
-		this.sections = [...this.refs.textSections.querySelectorAll('section')]
+		this.sections = [ ...this.refs.textSections.querySelectorAll(`section`) ]
 
 		this.updateTimeline()
 	},
 	data() {
-		return defaultState
+		return Object.assign({}, defaultState)
+	},
+	computed: {
+		daySize: windowHeight => windowHeight
+			? windowHeight > 450 ? 100 : 80
+			: 100,
 	},
 	components: {
-		Timeline
+		Timeline,
 	},
 	methods: {
 		updateWindow() {
 			this.set({
-				windowHeight: window.document.documentElement.clientHeight
+				windowHeight: window.document.documentElement.clientHeight,
 			})
 		},
 		updateTimeline() {
-			const windowHeight = this.get('windowHeight')
+			const windowHeight = this.get(`windowHeight`)
 
 			const middleOfScreen = windowHeight / 2
 
@@ -443,7 +450,7 @@ export default {
 		},
 		onScroll() {
 			this.updateTimeline()
-		}
-	}
+		},
+	},
 }
 </script>

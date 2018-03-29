@@ -1,7 +1,7 @@
 <svg
 	style="height: {{((days.length + .5) * dayHeight) + daySquareStrokeWidth}}px; width: 600px"
 >
-	<g>
+	<TransitioningGroup visible={{showTimeline}}>
 		{{#each days as day, i}}
 			<rect
 				y="{{impliedDayBorder + i * dayHeight}}"
@@ -30,7 +30,7 @@
 			>
 			</rect>
 		{{/each}}
-	</g>
+	</TransitioningGroup>
 
 
 	<TransitioningGroup visible={{showDaylightNighttimeLabels}}>

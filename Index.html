@@ -342,6 +342,7 @@
 				:showWeeklySabbath
 				:showResurrection
 				:showTimeFromBurialToResurrection
+				showTimeline={{anySectionVisible}}
 				dayHeight={{daySize}}
 				dayWidth={{daySize}}
 			/>
@@ -388,7 +389,7 @@ section {
 <script>
 import Timeline from './Timeline.html'
 
-const defaultState = {
+const defaultTimelineState = {
 	showFridaySundayRange: false,
 	showWeekdayLabels: false,
 	showDayOfMonth: false,
@@ -419,7 +420,10 @@ export default {
 		this.updateTimeline()
 	},
 	data() {
-		return Object.assign({}, defaultState)
+		return Object.assign({
+			anySectionVisible: false,
+			lastSection: null,
+		}, defaultTimelineState)
 	},
 	computed: {
 		daySize: windowHeight => windowHeight
@@ -436,7 +440,7 @@ export default {
 			})
 		},
 		updateTimeline() {
-			const windowHeight = this.get(`windowHeight`)
+			const { windowHeight, lastSection } = this.get()
 
 			const middleOfScreen = windowHeight / 2
 
@@ -446,13 +450,32 @@ export default {
 				return bottom > 0 && top < middleOfScreen
 			})
 
+			if (visibleAboveMiddleOfScreen.length === 0) {
+				this.set(Object.assign(
+					{ anySectionVisible: false },
+					defaultTimelineState
+				))
+				return
+			}
+
 			const lastSectionInTopHalfOfScreen = visibleAboveMiddleOfScreen.pop()
+
+			if (lastSectionInTopHalfOfScreen === lastSection) {
+				this.set(Object.assign(
+					{ anySectionVisible: false },
+					defaultTimelineState
+				))
+				return
+			}
 
 			const trueValues = makeTruthyMap(
 				Object.keys(lastSectionInTopHalfOfScreen.dataset)
 			)
 
-			this.set(Object.assign({}, defaultState, trueValues))
+			this.set(Object.assign({
+				anySectionVisible: true,
+				lastSection,
+			}, defaultTimelineState, trueValues))
 
 			return lastSectionInTopHalfOfScreen
 		},

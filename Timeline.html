@@ -34,7 +34,7 @@
 	<TransitioningGroup visible={{showWeekdayLabels}}>
 		{{#each days as day, i}}
 			<text
-				y="{{impliedDayBorder + (i * dayHeight) + (dayHeight * 0.75)}}"
+				y="{{getDayY(i + .8)}}"
 				x="{{dayRightX + 20}}"
 				text-anchor="start"
 				fill="{{black}}"

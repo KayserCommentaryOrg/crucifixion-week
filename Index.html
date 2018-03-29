@@ -78,7 +78,7 @@
 				See also Exodus 23:15-23, Exodus 12:1-11, and Deuteronomy 16:1-8 for more Biblical confirmations of the Passover dates. Current-day Jews who observe the Passover feast still use the Hebrew calendar to figure out when to observe these days.
 			</p>
 			<p>
-				Note also that there are two special no-work Sabbaths at the beginning and end of the feast of unleavened bread. These days of rest are based on the day of the month, and don't necessarily overlap with the weekly Sabbaths.
+				Note also that there are two special no-work "High Sabbaths" at the beginning and end of the Feast of Unleavened Bread. These days of rest are based on the day of the month, and don't necessarily overlap with the weekly seventh-day Sabbaths.
 			</p>
 			<p>
 				(There were five other special days of rest commanded in the Bible during other feasts: Pentecost, Trumpets, Atonement, and two during Tabernacles.)
@@ -409,6 +409,7 @@
 			data-show-crucifixion
 			data-show-buried
 			data-show-resurrection
+			data-show-traditional-burial
 		>
 			<h1>
 				In conclusion
@@ -437,6 +438,7 @@
 					showCrucifixion={{true}}
 					showBuried={{true}}
 					showResurrection={{true}}
+					showTraditionalBurial={{true}}
 					showTimeline={{true}}
 					dayHeight={{daySize}}
 					dayWidth={{daySize}}
@@ -463,6 +465,7 @@
 				:showResurrection
 				:showTimeFromBurialToResurrection
 				:showTimeline
+				:showTraditionalBurial
 				dayHeight={{daySize}}
 				dayWidth={{daySize}}
 			/>
@@ -547,6 +550,7 @@ const defaultTimelineState = {
 	showResurrection: false,
 	showTimeFromBurialToResurrection: false,
 	showDaylightNighttimeLabels: false,
+	showTraditionalBurial: false,
 }
 
 const makeTruthyMap = keys => keys.reduce((o, key) => {

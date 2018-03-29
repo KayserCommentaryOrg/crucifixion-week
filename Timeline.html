@@ -315,6 +315,24 @@
 		</text>
 	</TransitioningGroup>
 
+	<TransitioningGroup visible={{showTraditionalBurial}}>
+		<Line
+			rightX={{dayLeftX}}
+			rightY={{traditionalBurialY}}
+			leftX={{dayLeftX - 50}}
+			leftY={{traditionalBurialY}}
+		/>
+		<text
+			y="{{traditionalBurialY + textDistanceFromPointer}}"
+			x="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			width="{{dayLeftX - 50 - textDistanceFromPointer}}"
+			text-anchor="end"
+			fill="{{black}}"
+		>
+			Burial (traditional)
+		</text>
+	</TransitioningGroup>
+
 	<TransitioningGroup visible={{showTimeFromBurialToResurrection}}>
 		<rect
 			y="{{ burialY }}"
@@ -428,6 +446,7 @@ export default {
 
 
 		burialY: getDayY => getDayY(0.95),
+		traditionalBurialY: getDayY => getDayY(1.95),
 		resurrectionY: getDayY => getDayY(3.25),
 
 		lastSupperY: getDayY => getDayY(0.05),

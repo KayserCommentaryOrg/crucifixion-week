@@ -507,8 +507,7 @@
 }
 
 section {
-	padding-top: 32px;
-	padding-bottom: 32px;
+	padding-bottom: 96px;
 }
 
 @media (max-width: 900px) {
@@ -520,15 +519,7 @@ section {
 	}
 
 	section {
-		padding-top: 0;
 		padding-bottom: 0;
-	}
-}
-
-@media (max-width: 380px) {
-	.mobile-timeline {
-		margin-left: -16px;
-		margin-right: -16px;
 	}
 }
 </style>
@@ -619,28 +610,28 @@ export default {
 				return
 			}
 
-			const middleOfScreen = windowHeight / 2
+			const visibilityThreshold = windowHeight * .33
 
-			const visibleAboveMiddleOfScreen = this.sections.filter(section => {
+			const visibleAboveThreshold = this.sections.filter(section => {
 				const { bottom, top } = section.getBoundingClientRect()
 
-				return bottom > 0 && top < middleOfScreen
+				return bottom > 0 && top < visibilityThreshold
 			})
 
-			if (visibleAboveMiddleOfScreen.length === 0) {
+			if (visibleAboveThreshold.length === 0) {
 				this.hideTimeline()
 				return
 			}
 
-			const lastSectionInTopHalfOfScreen = visibleAboveMiddleOfScreen.pop()
+			const lastSectionInTopOfScreen = visibleAboveThreshold.pop()
 
-			if (lastSectionInTopHalfOfScreen === lastSection) {
+			if (lastSectionInTopOfScreen === lastSection) {
 				this.hideTimeline()
 				return
 			}
 
 			const trueValues = makeTruthyMap(
-				Object.keys(lastSectionInTopHalfOfScreen.dataset)
+				Object.keys(lastSectionInTopOfScreen.dataset)
 			)
 
 			this.set(Object.assign({
@@ -648,7 +639,7 @@ export default {
 				lastSection,
 			}, defaultTimelineState, trueValues))
 
-			return lastSectionInTopHalfOfScreen
+			return lastSectionInTopOfScreen
 		},
 		onResize() {
 			this.updateWindow()

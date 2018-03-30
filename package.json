@@ -33,7 +33,7 @@
     "rollup-plugin-json": "^2.3.0",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-svelte": "^4.0.0",
-    "svelte": "^1.58.5",
+    "svelte": "1.59.0",
     "svelte-preprocess-postcss": "^1.0.0",
     "svelte-transitions": "^1.1.1"
   },

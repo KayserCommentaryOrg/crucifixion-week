@@ -1,5 +1,5 @@
 <svg
-	style="height: {{((days.length + .5) * dayHeight) + daySquareStrokeWidth}}px; width: {{narrow ? 350 : 490}}px"
+	style="height: {{((days.length + .5) * dayHeight) + daySquareStrokeWidth}}px; width: {{narrow ? 335 : 490}}px"
 	data-narrow={{narrow}}
 >
 	<TransitioningGroup visible={{showTimeline}}>
@@ -420,7 +420,7 @@ export default {
 		pointerLength: narrow => narrow ? 25 : 50,
 		rangeBarWidth: narrow => narrow ? 10 : 20,
 		dayWidth: (narrow, dayHeight) => narrow ? 60 : dayHeight,
-		timelineLeft: narrow => narrow ? 145 : 200,
+		timelineLeft: narrow => narrow ? 140 : 200,
 		visualizationHeight: dayHeight => visualizationHeight(dayHeight),
 		impliedDayBorder: daySquareStrokeWidth => daySquareStrokeWidth / 2,
 		highlightedDays: (showFridayHighlight, showSundayHighlight) => [

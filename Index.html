@@ -1,4 +1,4 @@
-<:Window on:scroll='onScroll()' on:resize='onResize()'/>
+<svelte:window on:scroll='onScroll()' on:resize='onResize()'/>
 
 <div class="columns">
 	<div class="text-column" ref:textSections>
@@ -23,12 +23,12 @@
 
 			<div class="mobile-timeline">
 				<Timeline
-					showFridaySundayRange={{true}}
-					showWeekdayLabels={{true}}
-					showDaylightNighttimeLabels={{true}}
-					showTimeline={{true}}
-					narrow={{narrowScreen}}
-					:dayHeight
+					showFridaySundayRange={true}
+					showWeekdayLabels={true}
+					showDaylightNighttimeLabels={true}
+					showTimeline={true}
+					narrow={narrowScreen}
+					{dayHeight}
 				/>
 			</div>
 
@@ -73,14 +73,14 @@
 
 			<div class="mobile-timeline">
 				<Timeline
-					showDayOfMonth={{true}}
-					showLambSacrificed={{true}}
-					showLambSupperEaten={{true}}
-					showHighSabbath={{true}}
-					showFeastOfUnleavenedBread={{true}}
-					showTimeline={{true}}
-					narrow={{narrowScreen}}
-					:dayHeight
+					showDayOfMonth={true}
+					showLambSacrificed={true}
+					showLambSupperEaten={true}
+					showHighSabbath={true}
+					showFeastOfUnleavenedBread={true}
+					showTimeline={true}
+					narrow={narrowScreen}
+					{dayHeight}
 				/>
 			</div>
 
@@ -125,13 +125,13 @@
 
 			<div class="mobile-timeline">
 				<Timeline
-					showDayOfMonth={{true}}
-					showLambSacrificed={{true}}
-					showHighSabbath={{true}}
-					showCrucifixion={{true}}
-					showTimeline={{true}}
-					narrow={{narrowScreen}}
-					:dayHeight
+					showDayOfMonth={true}
+					showLambSacrificed={true}
+					showHighSabbath={true}
+					showCrucifixion={true}
+					showTimeline={true}
+					narrow={narrowScreen}
+					{dayHeight}
 				/>
 			</div>
 
@@ -171,14 +171,14 @@
 
 			<div class="mobile-timeline">
 				<Timeline
-					showDayOfMonth={{true}}
-					showLambSacrificed={{true}}
-					showHighSabbath={{true}}
-					showCrucifixion={{true}}
-					showBuried={{true}}
-					showTimeline={{true}}
-					narrow={{narrowScreen}}
-					:dayHeight
+					showDayOfMonth={true}
+					showLambSacrificed={true}
+					showHighSabbath={true}
+					showCrucifixion={true}
+					showBuried={true}
+					showTimeline={true}
+					narrow={narrowScreen}
+					{dayHeight}
 				/>
 			</div>
 
@@ -216,15 +216,15 @@
 
 			<div class="mobile-timeline">
 				<Timeline
-					showDayOfMonth={{true}}
-					showLambSacrificed={{true}}
-					showHighSabbath={{true}}
-					showCrucifixion={{true}}
-					showBuried={{true}}
-					showLastSupper={{true}}
-					showTimeline={{true}}
-					narrow={{narrowScreen}}
-					:dayHeight
+					showDayOfMonth={true}
+					showLambSacrificed={true}
+					showHighSabbath={true}
+					showCrucifixion={true}
+					showBuried={true}
+					showLastSupper={true}
+					showTimeline={true}
+					narrow={narrowScreen}
+					{dayHeight}
 				/>
 			</div>
 
@@ -256,13 +256,13 @@
 			</p>
 			<div class="mobile-timeline">
 				<Timeline
-					showDayOfMonth={{true}}
-					showHighSabbath={{true}}
-					showWeekdayLabels={{true}}
-					showWeeklySabbath={{true}}
-					showTimeline={{true}}
-					narrow={{narrowScreen}}
-					:dayHeight
+					showDayOfMonth={true}
+					showHighSabbath={true}
+					showWeekdayLabels={true}
+					showWeeklySabbath={true}
+					showTimeline={true}
+					narrow={narrowScreen}
+					{dayHeight}
 				/>
 			</div>
 			<p>
@@ -317,15 +317,15 @@
 
 			<div class="mobile-timeline">
 				<Timeline
-					showHighSabbath={{true}}
-					showWeeklySabbath={{true}}
-					showWeekdayLabels={{true}}
-					showCrucifixion={{true}}
-					showBuried={{true}}
-					showResurrection={{true}}
-					showTimeline={{true}}
-					narrow={{narrowScreen}}
-					:dayHeight
+					showHighSabbath={true}
+					showWeeklySabbath={true}
+					showWeekdayLabels={true}
+					showCrucifixion={true}
+					showBuried={true}
+					showResurrection={true}
+					showTimeline={true}
+					narrow={narrowScreen}
+					{dayHeight}
 				/>
 			</div>
 
@@ -359,14 +359,14 @@
 
 			<div class="mobile-timeline">
 				<Timeline
-					showWeekdayLabels={{true}}
-					showCrucifixion={{true}}
-					showBuried={{true}}
-					showResurrection={{true}}
-					showTimeFromBurialToResurrection={{true}}
-					showTimeline={{true}}
-					narrow={{narrowScreen}}
-					:dayHeight
+					showWeekdayLabels={true}
+					showCrucifixion={true}
+					showBuried={true}
+					showResurrection={true}
+					showTimeFromBurialToResurrection={true}
+					showTimeline={true}
+					narrow={narrowScreen}
+					{dayHeight}
 				/>
 			</div>
 
@@ -408,16 +408,16 @@
 
 			<div class="mobile-timeline">
 				<Timeline
-					showHighSabbath={{true}}
-					showWeeklySabbath={{true}}
-					showWeekdayLabels={{true}}
-					showCrucifixion={{true}}
-					showBuried={{true}}
-					showResurrection={{true}}
-					showTraditionalBurial={{true}}
-					showTimeline={{true}}
-					narrow={{narrowScreen}}
-					:dayHeight
+					showHighSabbath={true}
+					showWeeklySabbath={true}
+					showWeekdayLabels={true}
+					showCrucifixion={true}
+					showBuried={true}
+					showResurrection={true}
+					showTraditionalBurial={true}
+					showTimeline={true}
+					narrow={narrowScreen}
+					{dayHeight}
 				/>
 			</div>
 
@@ -444,24 +444,24 @@
 	<div class="timeline-column">
 		<div class="sticky-timeline">
 			<Timeline
-				:showFridaySundayRange
-				:showDaylightNighttimeLabels
-				:showWeekdayLabels
-				:showDayOfMonth
-				:showLambSacrificed
-				:showLambSupperEaten
-				:showHighSabbath
-				:showFeastOfUnleavenedBread
-				:showCrucifixion
-				:showBuried
-				:showLastSupper
-				:showWeeklySabbath
-				:showResurrection
-				:showTimeFromBurialToResurrection
-				:showTraditionalBurial
-				:showTimeline
-				narrow={{narrowScreen}}
-				:dayHeight
+				{showFridaySundayRange}
+				{showDaylightNighttimeLabels}
+				{showWeekdayLabels}
+				{showDayOfMonth}
+				{showLambSacrificed}
+				{showLambSupperEaten}
+				{showHighSabbath}
+				{showFeastOfUnleavenedBread}
+				{showCrucifixion}
+				{showBuried}
+				{showLastSupper}
+				{showWeeklySabbath}
+				{showResurrection}
+				{showTimeFromBurialToResurrection}
+				{showTraditionalBurial}
+				{showTimeline}
+				narrow={narrowScreen}
+				{dayHeight}
 			/>
 		</div>
 	</div>
@@ -565,8 +565,8 @@ export default {
 		}, defaultTimelineState)
 	},
 	computed: {
-		narrowScreen: windowWidth => windowWidth && windowWidth < 570,
-		dayHeight: (windowHeight, narrowScreen) => {
+		narrowScreen: ({ windowWidth }) => windowWidth && windowWidth < 570,
+		dayHeight: ({ windowHeight, narrowScreen }) => {
 			const shortScreen = windowHeight && windowHeight < 450
 
 			if (shortScreen || narrowScreen) {

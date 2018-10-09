@@ -1,370 +1,370 @@
 <svg
-	style="height: {{((days.length + .5) * dayHeight) + daySquareStrokeWidth}}px; width: {{narrow ? 335 : 490}}px"
-	data-narrow={{narrow}}
+	style="height: {((days.length + .5) * dayHeight) + daySquareStrokeWidth}px; width: {narrow ? 335 : 490}px"
+	data-narrow={narrow}
 >
-	<TransitioningGroup visible={{showTimeline}}>
-		{{#each days as day, i}}
+	<TransitioningGroup visible={showTimeline}>
+		{#each days as day, i}
 			<rect
-				y="{{impliedDayBorder + getDayY(i)}}"
-				x="{{timelineLeft}}"
-				width="{{dayWidth}}"
-				height="{{dayHeight}}"
+				y="{impliedDayBorder + getDayY(i)}"
+				x="{timelineLeft}"
+				width="{dayWidth}"
+				height="{dayHeight}"
 				class="day-box"
-				stroke="{{navy}}"
-				stroke-width="{{daySquareStrokeWidth}}"
+				stroke="{navy}"
+				stroke-width="{daySquareStrokeWidth}"
 			>
 			</rect>
 			<rect
-				y="{{getDayY(i)}}"
-				x="{{timelineLeft}}"
-				width="{{dayWidth}}"
-				height="{{dayHeight / 2}}"
+				y="{getDayY(i)}"
+				x="{timelineLeft}"
+				width="{dayWidth}"
+				height="{dayHeight / 2}"
 				class="nighttime-box"
 			>
 			</rect>
 			<rect
-				y="{{getDayY(i) + (dayHeight * 0.5)}}"
-				x="{{timelineLeft}}"
-				width="{{dayWidth}}"
-				height="{{dayHeight / 2}}"
+				y="{getDayY(i) + (dayHeight * 0.5)}"
+				x="{timelineLeft}"
+				width="{dayWidth}"
+				height="{dayHeight / 2}"
 				class="daylight-box"
 			>
 			</rect>
-		{{/each}}
+		{/each}
 	</TransitioningGroup>
 
 
-	<TransitioningGroup visible={{showDaylightNighttimeLabels}}>
-		{{#each days as day, i}}
+	<TransitioningGroup visible={showDaylightNighttimeLabels}>
+		{#each days as day, i}
 			<text
-				x="{{ timelineLeft + (dayWidth / 2) }}"
-				width="{{ dayWidth }}"
-				y="{{ getDayY(i + .3) }}"
-				fill="{{navy}}"
+				x="{ timelineLeft + (dayWidth / 2) }"
+				width="{ dayWidth }"
+				y="{ getDayY(i + .3) }"
+				fill="{navy}"
 				text-anchor="middle"
 			>
 				Night
 			</text>
 			<text
-				x="{{ timelineLeft + (dayWidth / 2) }}"
-				width="{{ dayWidth }}"
-				y="{{ getDayY(i + .8) }}"
-				fill="{{navy}}"
+				x="{ timelineLeft + (dayWidth / 2) }"
+				width="{ dayWidth }"
+				y="{ getDayY(i + .8) }"
+				fill="{navy}"
 				text-anchor="middle"
 			>
 				Day
 			</text>
-		{{/each}}
+		{/each}
 	</TransitioningGroup>
 
 
 
-	<TransitioningGroup visible={{showWeekdayLabels}}>
-		{{#each days as day, i}}
+	<TransitioningGroup visible={showWeekdayLabels}>
+		{#each days as day, i}
 			<text
-				y="{{getDayY(i + .8)}}"
-				x="{{dayRightX + 20}}"
+				y="{getDayY(i + .8)}"
+				x="{dayRightX + 20}"
 				text-anchor="start"
-				fill="{{black}}"
+				fill="{black}"
 			>
-				{{day.weekday}}
+				{day.weekday}
 			</text>
-		{{/each}}
+		{/each}
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showFridaySundayRange}}>
+	<TransitioningGroup visible={showFridaySundayRange}>
 		<rect
-			y="{{ fridaySundayRangeY }}"
-			x="{{ leftRangeBarX }}"
-			width="{{ rangeBarWidth }}"
-			height="{{ fridaySundayRangeHeight }}"
-			fill="{{olive}}"
+			y="{ fridaySundayRangeY }"
+			x="{ leftRangeBarX }"
+			width="{ rangeBarWidth }"
+			height="{ fridaySundayRangeHeight }"
+			fill="{olive}"
 		>
 		</rect>
 		<Line
-			stroke={{olive}}
-			leftX={{dayLeftX - pointerLength}}
-			leftY={{fridaySundayRangeMidpoint}}
-			rightX={{leftRangeBarX}}
-			rightY={{fridaySundayRangeMidpoint}}
+			stroke={olive}
+			leftX={dayLeftX - pointerLength}
+			leftY={fridaySundayRangeMidpoint}
+			rightX={leftRangeBarX}
+			rightY={fridaySundayRangeMidpoint}
 		/>
 		<text
-			y={{fridaySundayRangeMidpoint - 4 - textDistanceFromPointer}}
-			x={{dayLeftX - pointerLength - textDistanceFromPointer}}
-			width={{dayLeftX - pointerLength - textDistanceFromPointer}}
+			y={fridaySundayRangeMidpoint - 4 - textDistanceFromPointer}
+			x={dayLeftX - pointerLength - textDistanceFromPointer}
+			width={dayLeftX - pointerLength - textDistanceFromPointer}
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Time in tomb
 		</text>
 		<text
-			y={{fridaySundayRangeMidpoint + 12 + textDistanceFromPointer}}
-			x={{dayLeftX - pointerLength - textDistanceFromPointer}}
-			width={{dayLeftX - pointerLength - textDistanceFromPointer}}
+			y={fridaySundayRangeMidpoint + 12 + textDistanceFromPointer}
+			x={dayLeftX - pointerLength - textDistanceFromPointer}
+			width={dayLeftX - pointerLength - textDistanceFromPointer}
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			(traditional)
 		</text>
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showDayOfMonth}}>
-		{{#each days as day, i}}
+	<TransitioningGroup visible={showDayOfMonth}>
+		{#each days as day, i}
 			<text
-				x="{{ timelineLeft + (dayWidth / 2) }}"
-				width="{{ dayWidth }}"
-				y="{{ getDayY(i + .8) }}"
-				fill="{{navy}}"
+				x="{ timelineLeft + (dayWidth / 2) }"
+				width="{ dayWidth }"
+				y="{ getDayY(i + .8) }"
+				fill="{navy}"
 				text-anchor="middle"
 			>
-				{{day.number}}
+				{day.number}
 			</text>
-		{{/each}}
+		{/each}
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showLambSacrificed}}>
+	<TransitioningGroup visible={showLambSacrificed}>
 		<Line
-			rightX={{dayLeftX}}
-			rightY={{lambSacrificedY}}
-			leftX={{dayLeftX - pointerLength}}
-			leftY={{lambSacrificedY - 24}}
+			rightX={dayLeftX}
+			rightY={lambSacrificedY}
+			leftX={dayLeftX - pointerLength}
+			leftY={lambSacrificedY - 24}
 		/>
 		<text
-			y="{{lambSacrificedY - 24 + textDistanceFromPointer}}"
-			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
-			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			y="{lambSacrificedY - 24 + textDistanceFromPointer}"
+			x="{dayLeftX - pointerLength - textDistanceFromPointer}"
+			width="{dayLeftX - pointerLength - textDistanceFromPointer}"
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Lamb sacrificed
 		</text>
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showHighSabbath}}>
+	<TransitioningGroup visible={showHighSabbath}>
 		<rect
-			y="{{ highSabbathRangeY }}"
-			x="{{ leftRangeBarX }}"
-			width="{{ rangeBarWidth }}"
-			height="{{ highSabbathRangeHeight }}"
-			fill="{{green}}"
+			y="{ highSabbathRangeY }"
+			x="{ leftRangeBarX }"
+			width="{ rangeBarWidth }"
+			height="{ highSabbathRangeHeight }"
+			fill="{green}"
 		>
 		</rect>
 		<Line
-			rightX={{dayLeftX}}
-			rightY={{highSabbathMidpointY}}
-			leftX={{dayLeftX - pointerLength}}
-			leftY={{highSabbathMidpointY}}
-			stroke={{green}}
+			rightX={dayLeftX}
+			rightY={highSabbathMidpointY}
+			leftX={dayLeftX - pointerLength}
+			leftY={highSabbathMidpointY}
+			stroke={green}
 		/>
 		<text
-			y="{{highSabbathMidpointY + textDistanceFromPointer}}"
-			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
-			width="{{dayLeftX - textDistanceFromPointer}}"
+			y="{highSabbathMidpointY + textDistanceFromPointer}"
+			x="{dayLeftX - pointerLength - textDistanceFromPointer}"
+			width="{dayLeftX - textDistanceFromPointer}"
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			High Sabbath
 		</text>
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showLambSupperEaten}}>
+	<TransitioningGroup visible={showLambSupperEaten}>
 		<Line
-			rightX={{dayLeftX}}
-			rightY={{lambEatenY}}
-			leftX={{dayLeftX - pointerLength}}
-			leftY={{lambEatenY}}
+			rightX={dayLeftX}
+			rightY={lambEatenY}
+			leftX={dayLeftX - pointerLength}
+			leftY={lambEatenY}
 		/>
 		<text
-			y={{lambEatenY + textDistanceFromPointer}}
-			x={{dayLeftX - pointerLength - textDistanceFromPointer}}
-			width={{dayLeftX - textDistanceFromPointer}}
+			y={lambEatenY + textDistanceFromPointer}
+			x={dayLeftX - pointerLength - textDistanceFromPointer}
+			width={dayLeftX - textDistanceFromPointer}
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Lamb supper eaten
 		</text>
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showFeastOfUnleavenedBread}}>
+	<TransitioningGroup visible={showFeastOfUnleavenedBread}>
 		<rect
-			y={{ getDayY(1) }}
-			x={{ dayRightX }}
-			width={{ rangeBarWidth }}
-			height={{ dayHeight * 3.2 }}
-			fill="{{red}}"
+			y={ getDayY(1) }
+			x={ dayRightX }
+			width={ rangeBarWidth }
+			height={ dayHeight * 3.2 }
+			fill="{red}"
 		>
 		</rect>
 		<polygon
-			points="{{dayRightX - 8}},{{getDayY(4.2)}} {{dayRightX + rangeBarWidth + 8}},{{getDayY(4.2)}} {{dayRightX + (rangeBarWidth / 2)}},{{getDayY(4.2) + rangeBarWidth}}"
-			fill="{{red}}"
+			points="{dayRightX - 8},{getDayY(4.2)} {dayRightX + rangeBarWidth + 8},{getDayY(4.2)} {dayRightX + (rangeBarWidth / 2)},{getDayY(4.2) + rangeBarWidth}"
+			fill="{red}"
 		/>
 		<Line
-			rightX={{dayRightX + pointerLength}}
-			rightY={{ getDayY(2) }}
-			leftX={{dayRightX}}
-			leftY={{ getDayY(2) }}
-			stroke={{red}}
+			rightX={dayRightX + pointerLength}
+			rightY={ getDayY(2) }
+			leftX={dayRightX}
+			leftY={ getDayY(2) }
+			stroke={red}
 		/>
 		<text
-			y={{ getDayY(2) - textDistanceFromPointer }}
-			x={{ dayRightX + pointerLength + textDistanceFromPointer }}
+			y={ getDayY(2) - textDistanceFromPointer }
+			x={ dayRightX + pointerLength + textDistanceFromPointer }
 			width="140"
 			text-anchor="start"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Feast of
 		</text>
 		<text
-			y={{ getDayY(2) + 16 }}
-			x={{ dayRightX + pointerLength + textDistanceFromPointer }}
+			y={ getDayY(2) + 16 }
+			x={ dayRightX + pointerLength + textDistanceFromPointer }
 			width="140"
 			text-anchor="start"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Unleavened Bread
 		</text>
 	</TransitioningGroup>
 
 
-	<TransitioningGroup visible={{showCrucifixion}}>
+	<TransitioningGroup visible={showCrucifixion}>
 		<Line
-			rightX={{dayLeftX}}
-			rightY={{lambSacrificedY}}
-			leftX={{dayLeftX - pointerLength}}
-			leftY={{lambSacrificedY}}
+			rightX={dayLeftX}
+			rightY={lambSacrificedY}
+			leftX={dayLeftX - pointerLength}
+			leftY={lambSacrificedY}
 		/>
 		<text
-			y="{{lambSacrificedY + textDistanceFromPointer}}"
-			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
-			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			y="{lambSacrificedY + textDistanceFromPointer}"
+			x="{dayLeftX - pointerLength - textDistanceFromPointer}"
+			width="{dayLeftX - pointerLength - textDistanceFromPointer}"
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Crucifixion
 		</text>
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showBuried}}>
+	<TransitioningGroup visible={showBuried}>
 		<Line
-			rightX={{dayLeftX}}
-			rightY={{burialY}}
-			leftX={{dayLeftX - pointerLength}}
-			leftY={{burialY + 20}}
+			rightX={dayLeftX}
+			rightY={burialY}
+			leftX={dayLeftX - pointerLength}
+			leftY={burialY + 20}
 		/>
 		<text
-			y="{{burialY + 20 + textDistanceFromPointer}}"
-			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
-			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			y="{burialY + 20 + textDistanceFromPointer}"
+			x="{dayLeftX - pointerLength - textDistanceFromPointer}"
+			width="{dayLeftX - pointerLength - textDistanceFromPointer}"
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Burial
 		</text>
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showLastSupper}}>
+	<TransitioningGroup visible={showLastSupper}>
 		<Line
-			rightX={{dayLeftX}}
-			rightY={{lastSupperY}}
-			leftX={{dayLeftX - pointerLength}}
-			leftY={{lastSupperY}}
+			rightX={dayLeftX}
+			rightY={lastSupperY}
+			leftX={dayLeftX - pointerLength}
+			leftY={lastSupperY}
 		/>
 		<text
-			y="{{lastSupperY + textDistanceFromPointer}}"
-			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
-			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			y="{lastSupperY + textDistanceFromPointer}"
+			x="{dayLeftX - pointerLength - textDistanceFromPointer}"
+			width="{dayLeftX - pointerLength - textDistanceFromPointer}"
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Last supper
 		</text>
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showWeeklySabbath}}>
+	<TransitioningGroup visible={showWeeklySabbath}>
 		<rect
-			y="{{ weeklySabbathRangeY }}"
-			x="{{ leftRangeBarX }}"
-			width="{{ rangeBarWidth }}"
-			height="{{ weeklySabbathRangeHeight }}"
-			fill="{{fuchsia}}"
+			y="{ weeklySabbathRangeY }"
+			x="{ leftRangeBarX }"
+			width="{ rangeBarWidth }"
+			height="{ weeklySabbathRangeHeight }"
+			fill="{fuchsia}"
 		>
 		</rect>
 		<Line
-			rightX={{dayLeftX}}
-			rightY={{weeklySabbathMidpointY}}
-			leftX={{dayLeftX - pointerLength}}
-			leftY={{weeklySabbathMidpointY}}
-			stroke={{fuchsia}}
+			rightX={dayLeftX}
+			rightY={weeklySabbathMidpointY}
+			leftX={dayLeftX - pointerLength}
+			leftY={weeklySabbathMidpointY}
+			stroke={fuchsia}
 		/>
 		<text
-			y="{{weeklySabbathMidpointY + textDistanceFromPointer}}"
-			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
-			width="{{dayLeftX - textDistanceFromPointer}}"
+			y="{weeklySabbathMidpointY + textDistanceFromPointer}"
+			x="{dayLeftX - pointerLength - textDistanceFromPointer}"
+			width="{dayLeftX - textDistanceFromPointer}"
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Weekly Sabbath
 		</text>
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showResurrection}}>
+	<TransitioningGroup visible={showResurrection}>
 		<Line
-			rightX={{dayLeftX}}
-			rightY={{resurrectionY}}
-			leftX={{dayLeftX - pointerLength}}
-			leftY={{resurrectionY}}
+			rightX={dayLeftX}
+			rightY={resurrectionY}
+			leftX={dayLeftX - pointerLength}
+			leftY={resurrectionY}
 		/>
 		<text
-			y="{{resurrectionY + textDistanceFromPointer}}"
-			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
-			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			y="{resurrectionY + textDistanceFromPointer}"
+			x="{dayLeftX - pointerLength - textDistanceFromPointer}"
+			width="{dayLeftX - pointerLength - textDistanceFromPointer}"
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Resurrection
 		</text>
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showTraditionalBurial}}>
+	<TransitioningGroup visible={showTraditionalBurial}>
 		<Line
-			rightX={{dayLeftX}}
-			rightY={{traditionalBurialY}}
-			leftX={{dayLeftX - pointerLength}}
-			leftY={{traditionalBurialY}}
+			rightX={dayLeftX}
+			rightY={traditionalBurialY}
+			leftX={dayLeftX - pointerLength}
+			leftY={traditionalBurialY}
 		/>
 		<text
-			y="{{traditionalBurialY + textDistanceFromPointer}}"
-			x="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
-			width="{{dayLeftX - pointerLength - textDistanceFromPointer}}"
+			y="{traditionalBurialY + textDistanceFromPointer}"
+			x="{dayLeftX - pointerLength - textDistanceFromPointer}"
+			width="{dayLeftX - pointerLength - textDistanceFromPointer}"
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Burial (traditional)
 		</text>
 	</TransitioningGroup>
 
-	<TransitioningGroup visible={{showTimeFromBurialToResurrection}}>
+	<TransitioningGroup visible={showTimeFromBurialToResurrection}>
 		<rect
-			y="{{ burialY }}"
-			x="{{ leftRangeBarX }}"
-			width="{{ rangeBarWidth }}"
-			height="{{ resurrectionY - burialY }}"
-			fill="{{olive}}"
+			y="{ burialY }"
+			x="{ leftRangeBarX }"
+			width="{ rangeBarWidth }"
+			height="{ resurrectionY - burialY }"
+			fill="{olive}"
 		>
 		</rect>
 		<Line
-			stroke={{olive}}
-			leftX={{dayLeftX - pointerLength}}
-			leftY={{timeInTombMidpointY}}
-			rightX={{leftRangeBarX}}
-			rightY={{timeInTombMidpointY}}
+			stroke={olive}
+			leftX={dayLeftX - pointerLength}
+			leftY={timeInTombMidpointY}
+			rightX={leftRangeBarX}
+			rightY={timeInTombMidpointY}
 		/>
 		<text
-			y={{timeInTombMidpointY + textDistanceFromPointer}}
-			x={{dayLeftX - pointerLength - textDistanceFromPointer}}
-			width={{dayLeftX - pointerLength - textDistanceFromPointer}}
+			y={timeInTombMidpointY + textDistanceFromPointer}
+			x={dayLeftX - pointerLength - textDistanceFromPointer}
+			width={dayLeftX - pointerLength - textDistanceFromPointer}
 			text-anchor="end"
-			fill="{{black}}"
+			fill="{black}"
 		>
 			Time in tomb
 		</text>
@@ -417,56 +417,56 @@ export default {
 		}, colors)
 	},
 	computed: {
-		pointerLength: narrow => narrow ? 25 : 50,
-		rangeBarWidth: narrow => narrow ? 10 : 20,
-		dayWidth: (narrow, dayHeight) => narrow ? 60 : dayHeight,
-		timelineLeft: narrow => narrow ? 140 : 200,
-		visualizationHeight: dayHeight => visualizationHeight(dayHeight),
-		impliedDayBorder: daySquareStrokeWidth => daySquareStrokeWidth / 2,
-		highlightedDays: (showFridayHighlight, showSundayHighlight) => [
+		pointerLength: ({ narrow }) => narrow ? 25 : 50,
+		rangeBarWidth: ({ narrow }) => narrow ? 10 : 20,
+		dayWidth: ({ narrow, dayHeight }) => narrow ? 60 : dayHeight,
+		timelineLeft: ({ narrow }) => narrow ? 140 : 200,
+		visualizationHeight: ({ dayHeight }) => visualizationHeight(dayHeight),
+		impliedDayBorder: ({ daySquareStrokeWidth }) => daySquareStrokeWidth / 2,
+		highlightedDays: ({ showFridayHighlight, showSundayHighlight }) => [
 			false,
 			showFridayHighlight,
 			false,
 			showSundayHighlight,
 		],
-		getDayY: (dayHeight, impliedDayBorder) => dayPosition =>
+		getDayY: ({ dayHeight, impliedDayBorder }) => dayPosition =>
 			8 + impliedDayBorder + (dayHeight * dayPosition),
-		dayLeftX: (timelineLeft, impliedDayBorder) =>
+		dayLeftX: ({ timelineLeft, impliedDayBorder }) =>
 			timelineLeft - impliedDayBorder,
-		dayRightX: (timelineLeft, dayWidth, impliedDayBorder) =>
+		dayRightX: ({ timelineLeft, dayWidth, impliedDayBorder }) =>
 			timelineLeft + dayWidth + impliedDayBorder,
-		leftRangeBarX: (dayLeftX, rangeBarWidth) =>
+		leftRangeBarX: ({ dayLeftX, rangeBarWidth }) =>
 			dayLeftX - rangeBarWidth,
 
 
-		fridaySundayRangeY: getDayY => getDayY(1.875),
-		fridaySundayRangeHeight: dayHeight => dayHeight * 1.5,
-		fridaySundayRangeMidpoint: (fridaySundayRangeY, fridaySundayRangeHeight) =>
+		fridaySundayRangeY: ({ getDayY }) => getDayY(1.875),
+		fridaySundayRangeHeight: ({ dayHeight }) => dayHeight * 1.5,
+		fridaySundayRangeMidpoint: ({ fridaySundayRangeY, fridaySundayRangeHeight }) =>
 			fridaySundayRangeY + (fridaySundayRangeHeight / 2),
 
-		lambSacrificedY: getDayY => getDayY(0.875),
-		lambEatenY: getDayY => getDayY(1.05),
+		lambSacrificedY: ({ getDayY }) => getDayY(0.875),
+		lambEatenY: ({ getDayY }) => getDayY(1.05),
 
-		highSabbathRangeY: getDayY => getDayY(1),
-		highSabbathRangeHeight: (getDayY, highSabbathRangeY) =>
+		highSabbathRangeY: ({ getDayY }) => getDayY(1),
+		highSabbathRangeHeight: ({ getDayY, highSabbathRangeY }) =>
 			getDayY(2) - highSabbathRangeY,
-		highSabbathMidpointY: (highSabbathRangeY, highSabbathRangeHeight) =>
+		highSabbathMidpointY: ({ highSabbathRangeY, highSabbathRangeHeight }) =>
 			highSabbathRangeY + (highSabbathRangeHeight / 2),
 
-		weeklySabbathRangeY: getDayY => getDayY(2),
-		weeklySabbathRangeHeight: (getDayY, weeklySabbathRangeY) =>
+		weeklySabbathRangeY: ({ getDayY }) => getDayY(2),
+		weeklySabbathRangeHeight: ({ getDayY, weeklySabbathRangeY }) =>
 			getDayY(3) - weeklySabbathRangeY,
-		weeklySabbathMidpointY: (weeklySabbathRangeY, weeklySabbathRangeHeight) =>
+		weeklySabbathMidpointY: ({ weeklySabbathRangeY, weeklySabbathRangeHeight }) =>
 			weeklySabbathRangeY + (weeklySabbathRangeHeight / 2),
 
 
-		burialY: getDayY => getDayY(0.95),
-		traditionalBurialY: getDayY => getDayY(1.95),
-		resurrectionY: getDayY => getDayY(3.25),
+		burialY: ({ getDayY }) => getDayY(0.95),
+		traditionalBurialY: ({ getDayY }) => getDayY(1.95),
+		resurrectionY: ({ getDayY }) => getDayY(3.25),
 
-		lastSupperY: getDayY => getDayY(0.05),
+		lastSupperY: ({ getDayY }) => getDayY(0.05),
 
-		timeInTombMidpointY: (burialY, resurrectionY) =>
+		timeInTombMidpointY: ({ burialY, resurrectionY }) =>
 			burialY + ((resurrectionY - burialY) / 2),
 
 	},

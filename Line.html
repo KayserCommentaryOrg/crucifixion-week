@@ -1,8 +1,8 @@
 <polyline
 	fill="none"
 	stroke-width="2"
-	:points
-	:stroke
+	{points}
+	{stroke}
 />
 
 <script>
@@ -24,8 +24,8 @@ export default {
 		}
 	},
 	computed: {
-		midpointX: (leftX, rightX) => leftX + ((rightX - leftX) / 2),
-		points: (leftX, leftY, rightX, rightY, midpointX) => buildPoints(
+		midpointX: ({ leftX, rightX }) => leftX + ((rightX - leftX) / 2),
+		points: ({ leftX, leftY, rightX, rightY, midpointX }) => buildPoints(
 			[ leftX, leftY ],
 			[ midpointX, leftY ],
 			[ midpointX, rightY ],
